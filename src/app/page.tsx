@@ -1,46 +1,97 @@
+"use client";
 import React from "react";
 import NavBar from "./NavBar";
 import Image from "next/image";
 import StickyCards from "./StickyCards";
 import VerticalSlide from "./VerticalSlide";
 import InfinityThumbnail from "./InfinityThumbnail";
+import { Button } from "@/components/ui/Button";
+import Accordion, { AccordionType } from "@/components/app/Accordion";
+
+const accordion1: AccordionType = {
+  section: [
+    {
+      title: "Advanced typography",
+      body: `Take full control over your ext with precision typography toos.
+          Adjust fonts, spacing, and styles to add more character to your
+          design`,
+    },
+    {
+      title: "CSS grids and layouts",
+      body: `Build complex layouts with ease using CSS Grids. Create
+          multi-directional structures, manage spacing, and achieve perfect
+          alignment without limitations`,
+    },
+    {
+      title: "Adaptive design",
+      body: `Ensure flawless responsiveness across all devices. Design with
+            adaptive elements that adjust seamlessly to different screen sizes
+            and resolutions.`,
+    },
+    {
+      title: "Designed for efficiency",
+      body: `Streamline your workflow with intuitive tools that simplify layout
+            structuring. Save time while maintaining complete design accuracy
+            and flexibility.`,
+    },
+  ],
+
+  image: [
+    "https://droip.com/wp-content/uploads/2025/03/advanced-typography-1024x724.webp",
+    "https://droip.com/wp-content/uploads/2025/03/CSS-Grids-Layouts.webp",
+    "https://droip.com/wp-content/uploads/2025/03/auto-responsive-1.webp",
+    "https://droip.com/wp-content/uploads/2025/03/Designed-for-Efficiency.webp",
+  ],
+};
 
 export default function page() {
   return (
     <div className="px-5 py-5">
-            <NavBar />
-      <p>No-Code WordPress Site Builder</p>
-      <div>
-        <div>
-          <p>Break Limit</p>
-          <p>Build Anything</p>
-          <p>No Code Needed</p>
+      <NavBar />
+      <p className="bg-[#212426] text-white inline py-3 px-5 rounded-full">
+        No-Code WordPress Site Builder
+      </p>
+      <div className="grid grid-cols-4 my-20 items-center">
+        <div className="col-span-3">
+          <h1 className="text-8xl text-white">Break Limit.</h1>
+          <h1 className="text-8xl text-white">
+            Build <span className="text-primary">Anything.</span>
+          </h1>
+          <h1 className="text-8xl text-white">No Code Needed</h1>
         </div>
-        <div>
-          <p>
+        <div className="flex flex-col gap-2">
+          <p className="text-secondary">
             Droip is a no-code, drag-and-drop WordPress builder that simplifies
             website creation with powerful capabilities
           </p>
-          <button>Watch Intro</button>
-          <button>Get started with Droip</button>
+          <div className="flex flex-col">
+            <Button variant="secondary" text="Watch Intro" />
+            <Button text="Get started with Drop" />
+          </div>
         </div>
       </div>
-      <Image
-        width={900}
-        height={400}
-        src={"https://droip.com/wp-content/uploads/2025/04/hero-home1.webp"}
-        alt="image"
-      />
-      <div>
-        <p>Design pixel-perfect sites beyond ordinary</p>
+      <div className="relative w-full h-[50vw] ">
+        <Image
+          className="bg-primary rounded-md py-2 inline"
+          fill
+          style={{
+            objectFit: "contain",
+          }}
+          // sizes="100vw"
+          src={"https://droip.com/wp-content/uploads/2025/04/hero-home1.webp"}
+          alt="image"
+        />
+      </div>
+
+      <Accordion items={accordion1} />
+      {/* <div>
+        <p className="text-white text-8xl my-20">
+          Design pixel-perfect sites beyond ordinary
+        </p>
         <div>
-          <p>Advanced typography</p>
-          <div>
-            Take full control over your ext with precision typography toos.
-            Adjust fonts, spacing, and styles to add more character to your
-            design
-            <button>View Details</button>
-          </div>
+          <p className="text-white">Advanced typography</p>
+          <div className="text-secondary"></div>
+          <Button variant="link" text="View Details" />
         </div>
         <div>
           <p>CSS grids and layouts</p>
@@ -69,7 +120,7 @@ export default function page() {
             <button>View Details</button>
           </div>
         </div>
-      </div>
+      </div> */}
       <div>
         <p>Craft engaging and immerive interactions</p>
         <div>

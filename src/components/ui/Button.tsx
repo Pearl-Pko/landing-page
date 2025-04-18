@@ -7,6 +7,7 @@ const buttonVariants = cva("", {
     variant: {
       default: "text-white bg-primary p-3 rounded-lg",
       secondary: "text-secondary p-3 rounded-lg",
+      link: "text-primary"
     },
   },
   defaultVariants: {
