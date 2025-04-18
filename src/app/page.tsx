@@ -7,8 +7,8 @@ import InfinityThumbnail from "./InfinityThumbnail";
 
 export default function page() {
   return (
-    <div>
-      <NavBar />
+    <div className="px-5 py-5">
+            <NavBar />
       <p>No-Code WordPress Site Builder</p>
       <div>
         <div>
