@@ -16,7 +16,7 @@ export type AccordionType = {
 
 const transition: Transition = { duration: 0.6, ease: "easeInOut" };
 
-export default function Accordion({ items }: { items: AccordionType }) {
+export default function Accordion({ items, align = "ltr" }: { items: AccordionType , align?: "ltr" | "rtl"}) {
   const [direction, setDirection] = useState<number>(1);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
@@ -24,8 +24,13 @@ export default function Accordion({ items }: { items: AccordionType }) {
   const selectedImage = items["image"][selectedIndex];
   return (
     <div className="h-lvh grid place-content-center">
-      <div className="grid grid-cols-5 grid-rows-1 gap-70">
-        <div className="inline-flex flex-col col-span-2 gap-5">
+      <div className="grid grid-cols-5  gap-70">
+        <div
+          className={cn(
+            "inline-flex flex-col col-span-2 gap-5 row-start-1",
+            align === "rtl" && "col-start-4"
+          )}
+        >
           {items["section"].map((item, index) => {
             return (
               <motion.div
@@ -48,7 +53,7 @@ export default function Accordion({ items }: { items: AccordionType }) {
                 <div
                   className="flex flex-col items-start cursor-pointer gap-5"
                   onClick={() => {
-                    setDirection(index > selectedIndex ? 1 : -1)
+                    setDirection(index > selectedIndex ? 1 : -1);
                     setSelectedIndex(index);
                   }}
                 >
@@ -83,7 +88,12 @@ export default function Accordion({ items }: { items: AccordionType }) {
             );
           })}
         </div>
-        <div className="col-span-3 inline-flex relative h-[500px] overflow-hidden">
+        <div
+          className={cn(
+            "col-span-3 inline-flex relative h-[500px] overflow-hidden row-start-1",
+           align === "rtl" && "col-start-1"
+          )}
+        >
           <AnimatePresence custom={direction} initial={false}>
             <motion.div
               key={selectedIndex}

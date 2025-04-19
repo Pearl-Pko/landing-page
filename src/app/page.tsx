@@ -44,6 +44,38 @@ const accordion1: AccordionType = {
   ],
 };
 
+const accordion2: AccordionType = {
+  section: [
+    {
+      title: "Advanced interaction timeline",
+      body: `Design smooth, multi-step animations with a timeline-based editor
+            for complete control.`,
+    },
+    {
+      title: "Custom timing editor",
+      body: `Fine-tune every interaction to deliver flawless performance by
+            adjusting delays, durations, easing functions, and more.`,
+    },
+    {
+      title: "Advanced triggers",
+      body: ` Trigger animations based on scrolling, hovering, page load, and more
+            for a dynamic experience.`,
+    },
+    {
+      title: "Achieve limitless precision",
+      body: `Create flawless, interactive designs visually with unmatched
+            accuracy and finesse.`,
+    },
+  ],
+
+  image: [
+    "https://droip.com/wp-content/uploads/2025/03/advanced-typography-1024x724.webp",
+    "https://droip.com/wp-content/uploads/2025/03/CSS-Grids-Layouts.webp",
+    "https://droip.com/wp-content/uploads/2025/03/auto-responsive-1.webp",
+    "https://droip.com/wp-content/uploads/2025/03/Designed-for-Efficiency.webp",
+  ],
+};
+
 export default function page() {
   return (
     <div className="px-5 py-5">
@@ -83,44 +115,20 @@ export default function page() {
         />
       </div>
 
-      <Accordion items={accordion1} />
-      {/* <div>
-        <p className="text-white text-8xl my-20">
+      <div>
+        <p className="text-8xl text-white mt-44">
           Design pixel-perfect sites beyond ordinary
         </p>
-        <div>
-          <p className="text-white">Advanced typography</p>
-          <div className="text-secondary"></div>
-          <Button variant="link" text="View Details" />
-        </div>
-        <div>
-          <p>CSS grids and layouts</p>
-          <div>
-            Build complex layouts with ease using CSS Grids. Create
-            multi-directional structures, manage spacing, and achieve perfect
-            alignment without limitations
-            <button>View Details</button>
-          </div>
-        </div>
-        <div>
-          <p>Adaptive design</p>
-          <div>
-            Ensure flawless responsiveness across all devices. Design with
-            adaptive elements that adjust seamlessly to different screen sizes
-            and resolutions.
-            <button>View Details</button>
-          </div>
-        </div>
-        <div>
-          <p>Designed for efficiency</p>
-          <div>
-            Streamline your workflow with intuitive tools that simplify layout
-            structuring. Save time while maintaining complete design accuracy
-            and flexibility.
-            <button>View Details</button>
-          </div>
-        </div>
-      </div> */}
+        <Accordion items={accordion1} />
+      </div>
+
+      <div>
+        <p className="text-8xl text-white mt-44">
+          Craft engaging and immersive interactions
+        </p>
+        <Accordion items={accordion2} align="rtl" />
+      </div>
+
       <div>
         <p>Craft engaging and immerive interactions</p>
         <div>
