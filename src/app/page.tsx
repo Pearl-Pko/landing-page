@@ -78,89 +78,67 @@ const accordion2: AccordionType = {
 
 export default function page() {
   return (
-    <div className="px-5 py-5">
-      <NavBar />
-      <p className="bg-[#212426] text-white inline py-3 px-5 rounded-full">
-        No-Code WordPress Site Builder
-      </p>
-      <div className="grid grid-cols-4 my-20 items-center">
-        <div className="col-span-3">
-          <h1 className="text-8xl text-white">Break Limit.</h1>
-          <h1 className="text-8xl text-white">
-            Build <span className="text-primary">Anything.</span>
-          </h1>
-          <h1 className="text-8xl text-white">No Code Needed</h1>
+    <div className="py-5">
+      <div className="max-w-[1330px] mx-auto">
+        <NavBar />
+        <p className="bg-[#212426] text-white inline py-3 px-5 rounded-full">
+          No-Code WordPress Site Builder
+        </p>
+        <div className="grid grid-cols-4 my-20 items-center">
+          <div className="col-span-3">
+            <h1 className="text-8xl text-white">Break Limit.</h1>
+            <h1 className="text-8xl text-white">
+              Build <span className="text-primary">Anything.</span>
+            </h1>
+            <h1 className="text-8xl text-white">No Code Needed</h1>
+          </div>
+          <div className="flex flex-col gap-2">
+            <p className="text-secondary">
+              Droip is a no-code, drag-and-drop WordPress builder that
+              simplifies website creation with powerful capabilities
+            </p>
+            <div className="flex flex-col">
+              <Button variant="secondary" text="Watch Intro" />
+              <Button text="Get started with Drop" />
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-2">
-          <p className="text-secondary">
-            Droip is a no-code, drag-and-drop WordPress builder that simplifies
-            website creation with powerful capabilities
+        <div className="relative w-full h-[50vw] ">
+          <Image
+            className="bg-primary rounded-md py-2 inline"
+            fill
+            style={{
+              objectFit: "contain",
+            }}
+            // sizes="100vw"
+            src={"https://droip.com/wp-content/uploads/2025/04/hero-home1.webp"}
+            alt="image"
+          />
+        </div>
+
+        <div>
+          <p className="text-8xl text-white mt-44">
+            Design pixel-perfect sites beyond ordinary
           </p>
-          <div className="flex flex-col">
-            <Button variant="secondary" text="Watch Intro" />
-            <Button text="Get started with Drop" />
-          </div>
+          <Accordion items={accordion1} />
         </div>
-      </div>
-      <div className="relative w-full h-[50vw] ">
-        <Image
-          className="bg-primary rounded-md py-2 inline"
-          fill
-          style={{
-            objectFit: "contain",
-          }}
-          // sizes="100vw"
-          src={"https://droip.com/wp-content/uploads/2025/04/hero-home1.webp"}
-          alt="image"
-        />
+
+        <div>
+          <p className="text-8xl text-white mt-44">
+            Craft engaging and immersive interactions
+          </p>
+          <Accordion items={accordion2} align="rtl" />
+        </div>
       </div>
 
-      <div>
-        <p className="text-8xl text-white mt-44">
-          Design pixel-perfect sites beyond ordinary
-        </p>
-        <Accordion items={accordion1} />
-      </div>
-
-      <div>
-        <p className="text-8xl text-white mt-44">
-          Craft engaging and immersive interactions
-        </p>
-        <Accordion items={accordion2} align="rtl" />
-      </div>
-
-      <div>
-        <p>Craft engaging and immerive interactions</p>
-        <div>
-          <p>Advanced interaction timeline</p>
-          <div>
-            Design smooth, multi-step animations with a timeline-based editor
-            for complete control.
-          </div>
-        </div>
-        <div>
-          <p>Custom timing editor</p>
-          <div>
-            Fine-tune every interaction to deliver flawless performance by
-            adjusting delays, durations, easing functions, and more.
-          </div>
-        </div>
-        <div>
-          <p>Advanced triggers</p>
-          <div>
-            Trigger animations based on scrolling, hovering, page load, and more
-            for a dynamic experience.
-          </div>
-        </div>
-        <div>
-          <p>Achieve limitless precision</p>
-          <div>
-            Create flawless, interactive designs visually with unmatched
-            accuracy and finesse.
-          </div>
+      <div className="bg-black">
+        <div className="mx-auto">
+          <p className="max-w-[1330px] mx-auto text-8xl text-white py-28">
+            Scale your <span className="block">business with</span>
+          </p>
+          <StickyCards />
         </div>
       </div>
-      <StickyCards />
       <VerticalSlide />
       <InfinityThumbnail />
       <div>
