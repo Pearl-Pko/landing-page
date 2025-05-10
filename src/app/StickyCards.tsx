@@ -59,6 +59,7 @@ export default function StickyCards() {
       {cards.map((card,  index) => {
         return (
           <motion.div
+            key={index}
             ref={[targetRef1, targetRef2, targetRef3][index]}
             style={{ scaleX: [scale1, scale2, scale3][index] }}
             className="sticky w-[1330px] max-w-screen mx-auto top-[calc((100vh-600px)/2)] mb-[calc((100vh-600px)/2)] p-10 pr-0 bg-[#212426] rounded-3xl flex flex-row justify-between gap-24 h-[600px]"
