@@ -7,6 +7,7 @@ import VerticalSlide from "./VerticalSlide";
 import InfinityThumbnail from "./InfinityThumbnail";
 import { Button } from "@/components/ui/Button";
 import Accordion, { AccordionType } from "@/components/app/Accordion";
+import RadialBlurCursorEffect from "@/components/app/RadialBlurCursorEffect";
 
 const accordion1: AccordionType = {
   section: [
@@ -140,85 +141,139 @@ export default function page() {
         </div>
       </div>
       <VerticalSlide />
-      <div>
-        <p>Low third-pardy dependencies</p>
+      <div className="max-w-[1330px] mx-auto py-[128px] flex flex-col gap-[72px]">
+        <p className="text-8xl text-white">
+          Low <span className="block">third-party</span>
+          <span className="block">dependencies</span>
+        </p>
 
-        <div>
-          More control, less reliance
-          <p>
-            Get complete control over your website’s performance and aesthetics
-            without extra plugins.
-          </p>
+        <div className="grid grid-cols-3 gap-1 relative overflow-hidden">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div
+              style={{
+                background:
+                  "radial-gradient(circle,rgba(27, 10, 154, 0.15) 0%, rgba(27, 10, 154, 0) 100%)",
+              }}
+              className="blur-2xl  w-[800px] h-[800px] rounded-full"
+            ></div>
+          </div>
+          <div className="z-10 bg-[#17191a] p-12 rounded-2xl flex flex-col justify-end gap-6">
+            <Image width={35} height={35} alt="" src="/third-party1.svg" />
+            <div className="flex flex-col gap-4">
+              <p className="text-white font-semibold text-2xl">
+                More control, less reliance
+              </p>
+              <p className="text-secondary font-semibold text-lg">
+                Get complete control over your website’s performance and
+                aesthetics without extra plugins.
+              </p>
+            </div>
+          </div>
+          <div className="z-10 col-span-2 rounded-2xl overflow-hidden pl-12 bg-[#17191a] ">
+            <video
+              name="video"
+              autoPlay
+              type="video\/mp4"
+              loop={true}
+              muted={true}
+              style={{ objectFit: "contain" }}
+              poster=""
+            >
+              <source
+                type="video/mp4"
+                src="https://droip.com/wp-content/uploads/2025/03/PanzerV3.mp4#t=0,0"
+              />
+            </video>
+          </div>
+          <div className="z-10 bg-[#17191a] p-12 rounded-2xl flex flex-col justify-end gap-6">
+            <Image width={35} height={35} alt="" src="/third-party2.svg" />
+            <div className="flex flex-col gap-4">
+              <p className="text-white font-semibold text-2xl">
+                Cost-effective
+              </p>
+              <p className="text-secondary font-semibold text-lg">
+                Reduce ongoing costs with built-in tools that let you scale
+                seamlessly without extra expenses.
+              </p>
+            </div>
+          </div>
+
+          <div className="z-10 bg-[#17191a] p-12 rounded-2xl flex flex-col justify-end gap-6">
+            <Image width={35} height={35} alt="" src="/third-party3.svg" />
+            <div className="flex flex-col gap-4">
+              <p className="text-white font-semibold text-2xl">
+                Simplified workflow
+              </p>
+              <p className="text-secondary font-semibold text-lg">
+                With everything built in, your design process is streamlined,
+                efficient, and hassle-free.
+              </p>
+            </div>
+          </div>
+
+          <div className="z-10 bg-[#17191a] p-12 rounded-2xl flex flex-col justify-end gap-6">
+            <Image width={35} height={35} alt="" src="/third-party3.svg" />
+            <div className="flex flex-col gap-4">
+              <p className="text-white font-semibold text-2xl">
+                Streamlined & secure
+              </p>
+              <p className="text-secondary font-semibold text-lg">
+                Fewer external plugins mean fewer vulnerabilities, keeping your
+                site secure and lightweight.
+              </p>
+            </div>
+          </div>
         </div>
-        <div>
-          Cost-effective
-          <p>
-            Reduce ongoing costs with built-in tools that let you scale
-            seamlessly without extra expenses.
-          </p>
-        </div>
-        <div>
-          Simplified workflow
-          <p>
-            With everything built in, your design process is streamlined,
-            efficient, and hassle-free.
-          </p>
-        </div>
-        <div>
-          Streamlined & secure
-          <p>
-            Fewer external plugins mean fewer vulnerabilities, keeping your site
-            secure and lightweight.
-          </p>
-        </div>
-        <video
-          name="video"
-          type="video\/mp4"
-          loop={true}
-          muted={true}
-          playbackrate="1"
-          starttime="0"
-          endtime="0"
-          lazy="true"
-          style={{ objectFit: "fill" }}
-          poster=""
-        >
-          <source
-            type="video/mp4"
-            src="https://droip.com/wp-content/uploads/2025/03/PanzerV3.mp4#t=0,0"
-          />
-        </video>
       </div>
-      <div>
-        <p>Performance that</p>
-        <div>
-          <p>Clean code output</p>
-          <p>
-            Droip generates minimal, well-structured code that is free from
-            unnecessary bloat ensuring efficiency.
+      <div className="bg-black relative">
+        <div className="max-w-[1330px] mx-auto py-[128px] flex flex-col gap-[128px]">
+          <p className="text-white text-center text-6xl font-semibold">
+            Performance that <span className="block">sets you apart</span>
           </p>
-          <Image
-            width={900}
-            height={400}
-            src={"https://droip.com/wp-content/uploads/2025/03/clean-code.webp"}
-            alt="image"
-          />
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <div className="flex flex-col gap-6 p-12">
+                <p className="text-white font-semibold text-3xl">
+                  Clean code output
+                </p>
+                <p className="text-secondary font-semibold text-lg">
+                  Droip generates minimal, well-structured code that is free
+                  from unnecessary bloat ensuring efficiency.
+                </p>
+              </div>
+              <Image
+                width={900}
+                height={400}
+                style={{ objectFit: "cover" }}
+                src={
+                  "https://droip.com/wp-content/uploads/2025/03/clean-code.webp"
+                }
+                alt="image"
+              />
+            </div>
+            <div>
+              <div className="flex flex-col gap-6 p-12">
+                <p className="text-white font-semibold text-3xl">
+                  Keep website lightweight
+                </p>
+                <p className="text-secondary font-semibold text-lg">
+                  Optimized code means faster load times, improved performance,
+                  and a smoother user experience.
+                </p>
+              </div>
+              <Image
+                width={900}
+                height={400}
+                style={{ objectFit: "cover" }}
+                src={
+                  "https://droip.com/wp-content/uploads/2025/03/lightweight.webp"
+                }
+                alt="image"
+              />
+            </div>
+          </div>
         </div>
-        <div>
-          <p>Keep website lightweight</p>
-          <p>
-            Optimized code means faster load times, improved performance, and a
-            smoother user experience.
-          </p>
-          <Image
-            width={900}
-            height={400}
-            src={
-              "https://droip.com/wp-content/uploads/2025/03/lightweight-1024x448.webp"
-            }
-            alt="image"
-          />
-        </div>
+        <RadialBlurCursorEffect />
       </div>
       <div>
         <p>Design and build everything</p>
