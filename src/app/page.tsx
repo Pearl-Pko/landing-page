@@ -140,7 +140,6 @@ export default function page() {
         </div>
       </div>
       <VerticalSlide />
-      <InfinityThumbnail />
       <div>
         <p>Low third-pardy dependencies</p>
 
