@@ -5,7 +5,7 @@ export default function RadialBlurCursorEffect({}: // children,
 {
   // children: React.ReactNode;
 }) {
-  // FIX: the cursor does not fade out when the user scrolls past the content only when they move the cursor away from it 
+  // FIX: the cursor effect does not fade out when the user scrolls past the content only when they move the cursor
   const [show, setShow] = useState(false);
   const parentRef = useRef<HTMLDivElement | null>(null);
   const mouseX = useMotionValue(0);

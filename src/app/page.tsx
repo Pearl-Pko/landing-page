@@ -8,6 +8,7 @@ import InfinityThumbnail from "./InfinityThumbnail";
 import { Button } from "@/components/ui/Button";
 import Accordion, { AccordionType } from "@/components/app/Accordion";
 import RadialBlurCursorEffect from "@/components/app/RadialBlurCursorEffect";
+import AppIntegration from "./AppIntegration";
 
 const accordion1: AccordionType = {
   section: [
@@ -275,6 +276,7 @@ export default function page() {
         </div>
         <RadialBlurCursorEffect />
       </div>
+      <AppIntegration/>
       <div>
         <p>Design and build everything</p>
         <p>more efficiently witht he most advanced granular controls</p>
