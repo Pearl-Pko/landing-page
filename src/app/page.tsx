@@ -174,9 +174,7 @@ export default function page() {
           </div>
           <div className="z-10 col-span-2 rounded-2xl overflow-hidden pl-12 bg-[#17191a] ">
             <video
-              name="video"
               autoPlay
-              type="video\/mp4"
               loop={true}
               muted={true}
               style={{ objectFit: "contain" }}
@@ -495,27 +493,27 @@ export default function page() {
               href=""
               className="w-[32px]  h-[32px] flex items-center justify-center "
             >
-              <Image width={18} height={18} src="/social1.svg" />
+              <Image alt="" width={18} height={18} src="/social1.svg" />
             </Link>
             <Link
               href=""
               className="w-[32px]  h-[32px] flex items-center justify-center "
             >
-              <Image width={18} height={18} src="/social2.svg" />
-            </Link>
-
-            <Link
-              href=""
-              className="w-[32px]  h-[32px] flex items-center justify-center "
-            >
-              <Image width={18} height={18} src="/social3.svg" />
+              <Image alt="" width={18} height={18} src="/social2.svg" />
             </Link>
 
             <Link
               href=""
               className="w-[32px]  h-[32px] flex items-center justify-center "
             >
-              <Image width={18} height={18} src="/social4.svg" />
+              <Image alt="" width={18} height={18} src="/social3.svg" />
+            </Link>
+
+            <Link
+              href=""
+              className="w-[32px]  h-[32px] flex items-center justify-center "
+            >
+              <Image alt="" width={18} height={18} src="/social4.svg" />
             </Link>
           </div>
         </div>
