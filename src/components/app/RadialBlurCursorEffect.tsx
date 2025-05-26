@@ -38,7 +38,7 @@ export default function RadialBlurCursorEffect({}: // children,
 
   return (
     <>
-      <motion.div ref={parentRef} className="absolute inset-0">
+      <motion.div ref={parentRef} className="absolute inset-0 overflow-hidden">
         <AnimatePresence>
           {show && (
             <motion.div

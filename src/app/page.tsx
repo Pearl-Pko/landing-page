@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/Button";
 import Accordion, { AccordionType } from "@/components/app/Accordion";
 import RadialBlurCursorEffect from "@/components/app/RadialBlurCursorEffect";
 import AppIntegration from "./AppIntegration";
+import OutlineEffect from "@/components/app/OutlineEffect";
+import Link from "next/link";
 
 const accordion1: AccordionType = {
   section: [
@@ -80,7 +82,7 @@ const accordion2: AccordionType = {
 
 export default function page() {
   return (
-    <div className="py-5">
+    <div className="py-5 z-[4]">
       <div className="max-w-[1330px] mx-auto">
         <NavBar />
         <p className="bg-[#212426] text-white inline py-3 px-5 rounded-full">
@@ -276,68 +278,82 @@ export default function page() {
         </div>
         <RadialBlurCursorEffect />
       </div>
-      <AppIntegration/>
-      <div>
-        <p>Design and build everything</p>
-        <p>more efficiently witht he most advanced granular controls</p>
-        <div>
-          <div>
-            <p>Seamless migration</p>
-            <p>
-              Migrate your existing design seamlessly into Droip with just a
-              click of a button!
-            </p>
+      <AppIntegration />
+      <div className="py-32 max-w-[1330px] mx-auto">
+        <p className="text-8xl text-white font-semibold">
+          Design and <span className="block">build everything</span>
+        </p>
+        <div className="flex mt-7 mb-24 gap-8">
+          <div className="flex-1">
+            <OutlineEffect />
+          </div>
+          <p className="max-w-[400px] text-2xl text-white">
+            more efficiently witht the{" "}
+            <span className="font-semibold">most advanced</span> granular
+            controls
+          </p>
+        </div>
+        <div className="relative grid grid-cols-4 gap-[1px]">
+          <div className="absolute inset-0 -z-10 flex items-center justify-center">
+            <div
+              style={{
+                background:
+                  "radial-gradient(circle,rgba(27, 10, 154, 0.15) 0%, rgba(27, 10, 154, 0) 100%)",
+              }}
+              className="blur-2xl  w-[800px] h-full rounded-full"
+            ></div>
+          </div>
+          <div className="bg-[#17191a] p-8 rounded-2xl col-span-4 flex justify-between">
+            <div className="flex-1 self-end ">
+              <div className=" flex flex-col gap-6 max-w-[300px]">
+                <p className="text-white font-semibold text-3xl">
+                  Seamless <span className="block">migration</span>
+                </p>
+                <p className="text-secondary font-semibold text-[16px]">
+                  Migrate your existing design seamlessly into Droip with just a
+                  click of a button!
+                </p>
+              </div>
+            </div>
             <Image
               width={900}
               height={400}
+              className="flex-1"
               src={"https://droip.com/wp-content/uploads/2025/03/design1.webp"}
               alt="image"
             />
           </div>
-          <div>
-            <p>Seamless migration</p>
-            <p>
-              Migrate your existing design seamlessly into Droip with just a
-              click of a button!
-            </p>
+          <div className="col-span-2 flex flex-col gap-6 bg-[#17191a] p-8 rounded-2xl justify-between">
             <Image
               width={900}
               height={400}
-              src={"https://droip.com/wp-content/uploads/2025/03/design1.webp"}
+              src={"https://droip.com/wp-content/uploads/2025/03/design-1.webp"}
               alt="image"
             />
+            <div className="flex flex-col gap-6 max-w-[300px]">
+              <p className="text-white text-3xl font-semibold">Form builder</p>
+              <p className="text-secondary text-[16px] font-semibold">
+                Build forms for any purpose and effortlessly manage form data
+                natively.
+              </p>
+            </div>
           </div>
-          <div>
-            <Image
-              width={900}
-              height={400}
-              src={
-                "https://droip.com/wp-content/uploads/2025/03/design-1-300x92.webp"
-              }
-              alt="image"
-            />
-            <p>Form builder</p>
-            <p>
-              Build forms for any purpose and effortlessly manage form data
-              natively.
-            </p>
-          </div>
-          <div>
-            <p>CSS preview</p>
-            <p>See real-time CSS changes and fine-tune styles as you need.</p>
+
+          <div className="col-span-2 flex flex-col gap-6 bg-[#17191a] p-8 rounded-2xl justify-between">
             <Image
               width={900}
               height={400}
               src={"https://droip.com/wp-content/uploads/2025/03/design8.webp"}
               alt="image"
             />
+            <div className="flex flex-col gap-6 max-w-[300px]">
+              <p className="text-white text-3xl font-semibold">CSS preview</p>
+              <p className="text-secondary text-[16px] font-semibold">
+                See real-time CSS changes and fine-tune styles as you need.
+              </p>
+            </div>
           </div>
-          <div>
-            <p>Unlimited breakpoints</p>
-            <p>
-              Achieve pixel-perfect responsiveness across all devices with
-              unlimited breakpoints.
-            </p>
+          <div className="flex flex-col gap-6 bg-[#17191a] p-8 rounded-2xl justify-between">
             <Image
               width={900}
               height={400}
@@ -346,39 +362,49 @@ export default function page() {
               }
               alt="image"
             />
+            <div className="flex flex-col gap-6 max-w-[300px]">
+              <p className="text-white text-2xl font-semibold">
+                Unlimited breakpoints
+              </p>
+              <p className="text-secondary text-[16px] font-semibold">
+                Achieve pixel-perfect responsiveness across all devices with
+                unlimited breakpoints.
+              </p>
+            </div>
           </div>
-          <div>
-            <p>Figma to droip</p>
-            <p>
-              Seamlessly import Figma designs into Droip and bring your vision
-              to life in no time.
-            </p>
+          <div className="flex flex-col gap-6 bg-[#17191a] p-8 rounded-2xl justify-between">
             <Image
               width={900}
               height={400}
               src={"https://droip.com/wp-content/uploads/2025/03/design2.webp"}
               alt="image"
             />
+            <div className="flex flex-col gap-6 max-w-[300px]">
+              <p className="text-white text-2xl font-semibold">
+                Figma to droip
+              </p>
+              <p className="text-secondary text-[16px] font-semibold">
+                Seamlessly import Figma designs into Droip and bring your vision
+                to life in no time.
+              </p>
+            </div>
           </div>
-          <div>
-            <p>Code element</p>
-            <p>
-              Add custom HTML, CSS, and JavaScript to an element for extended
-              functionality.
-            </p>
+          <div className="flex flex-col gap-6 bg-[#17191a] p-8 rounded-2xl justify-between">
             <Image
               width={900}
               height={400}
               src={"https://droip.com/wp-content/uploads/2025/03/design4.webp"}
               alt="image"
             />
+            <div className="flex flex-col gap-6 max-w-[300px]">
+              <p className="text-white text-2xl font-semibold">Code element</p>
+              <p className="text-secondary text-[16px] font-semibold">
+                Add custom HTML, CSS, and JavaScript to an element for extended
+                functionality.
+              </p>
+            </div>
           </div>
-          <div>
-            <p>Pop-up builder</p>
-            <p>
-              Design engaging pop-ups that captivate visitors and boost
-              conversions.
-            </p>
+          <div className="flex flex-col gap-6 bg-[#17191a] p-8 rounded-2xl justify-between">
             <Image
               width={900}
               height={400}
@@ -387,12 +413,17 @@ export default function page() {
               }
               alt="image"
             />
+            <div className="flex flex-col gap-6 max-w-[300px]">
+              <p className="text-white text-2xl font-semibold">
+                Pop-up builder
+              </p>
+              <p className="text-secondary text-[16px] font-semibold">
+                Design engaging pop-ups that captivate visitors and boost
+                conversions.
+              </p>
+            </div>
           </div>
-          <div>
-            <p>Autosave</p>
-            <p>
-              Never lose progress—your work is automatically saved as you build.
-            </p>
+          <div className="flex flex-col gap-6 bg-[#17191a] p-8 rounded-2xl justify-between">
             <Image
               width={900}
               height={400}
@@ -401,20 +432,31 @@ export default function page() {
               }
               alt="image"
             />
+            <div className="flex flex-col gap-6 max-w-[300px]">
+              <p className="text-white text-2xl font-semibold">Autosave</p>
+              <p className="text-secondary text-[16px] font-semibold">
+                Never lose progress—your work is automatically saved as you
+                build.
+              </p>
+            </div>
           </div>
-          <div>
-            <p>Global style manager</p>
-            <p>Maintain consistent branding with centralized style controls.</p>
+          <div className="flex flex-col gap-6 bg-[#17191a] p-8 rounded-2xl justify-between">
             <Image
               width={900}
               height={400}
               src={"https://droip.com/wp-content/uploads/2025/03/design6.webp"}
               alt="image"
             />
+            <div className="flex flex-col gap-6 max-w-[300px]">
+              <p className="text-white text-2xl font-semibold">
+                Global style manager
+              </p>
+              <p className="text-secondary text-[16px] font-semibold">
+                Maintain consistent branding with centralized style controls.
+              </p>
+            </div>
           </div>
-          <div>
-            <p>Droip AI</p>
-            <p>Harness AI to accelerate your workflow and creative process.</p>
+          <div className="col-span-2 flex flex-col gap-6 bg-[#17191a] p-8 rounded-2xl justify-between">
             <Image
               width={900}
               height={400}
@@ -423,17 +465,94 @@ export default function page() {
               }
               alt="image"
             />
+            <div className="flex flex-col gap-6 max-w-[300px]">
+              <p className="text-white text-2xl font-semibold">Droip AI</p>
+              <p className="text-secondary text-[16px] font-semibold">
+                Harness AI to accelerate your workflow and creative process.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-      <div>
-        <p>Get Started for Free</p>
-        <div>
-          <p>
+      <div className="relative -z-10 bg-black max-w-[1330px] mx-auto p-16 rounded-2xl flex justify-between items-center overflow-hidden">
+        <p className="text-white text-6xl max-w-[370px] font-semibold ">
+          Get Started for Free
+        </p>
+        <div className="max-w-[375px] flex flex-col gap-6">
+          <p className="text-white ">
             Experience the power of Droip no-code website builder, risk free.
             Create stunning, responsive sites with pure creative freedom.
           </p>
-          <button>Try for Free</button>
+          <Button text="Try for Free" />
+        </div>
+        <RadialBlurCursorEffect />
+      </div>
+      <div className="grid grid-cols-5 max-w-[1330px] mx-auto mt-[154px]">
+        <div className="flex flex-col gap-6">
+          <p className="text-white font-semibold ">Social</p>
+          <div className="flex flex-col gap-3">
+            <Link
+              href=""
+              className="w-[32px]  h-[32px] flex items-center justify-center "
+            >
+              <Image width={18} height={18} src="/social1.svg" />
+            </Link>
+            <Link
+              href=""
+              className="w-[32px]  h-[32px] flex items-center justify-center "
+            >
+              <Image width={18} height={18} src="/social2.svg" />
+            </Link>
+
+            <Link
+              href=""
+              className="w-[32px]  h-[32px] flex items-center justify-center "
+            >
+              <Image width={18} height={18} src="/social3.svg" />
+            </Link>
+
+            <Link
+              href=""
+              className="w-[32px]  h-[32px] flex items-center justify-center "
+            >
+              <Image width={18} height={18} src="/social4.svg" />
+            </Link>
+          </div>
+        </div>
+        <div className="flex flex-col gap-6">
+          <p className="font-semibold text-white">Product</p>
+          <div className="flex flex-col gap-3.5 text-secondary ">
+            <p>Grid & Layouts</p>
+            <p>Typography</p>
+            <p>Media Manager</p>
+            <p>Form Builder</p>
+            <p>Pop-Up Builder</p>
+            <p>Interaction & Animations</p>
+            <p>Accessibility</p>
+          </div>
+        </div>
+        <div className="flex flex-col gap-6">
+          <p className="font-semibold text-white">Company</p>
+          <div className="flex flex-col gap-3.5 text-secondary ">
+            <p>Affiliates</p>
+            <p>Terms & Privacy</p>
+            <p>Cookie</p>
+          </div>
+        </div>
+        <div className="flex flex-col gap-6">
+          <p className="font-semibold text-white">Resources</p>
+          <div className="flex flex-col gap-3.5 text-secondary ">
+            <p>Blog</p>
+            <p>Documentation</p>
+            <p>Release Notes</p>
+          </div>
+        </div>
+        <div className="flex flex-col gap-6">
+          <p className="font-semibold text-white">Support</p>
+          <div className="flex flex-col gap-3.5 text-secondary ">
+            <p>Pricing</p>
+            <p>Contact Us</p>
+          </div>
         </div>
       </div>
     </div>
