@@ -82,10 +82,10 @@ const accordion2: AccordionType = {
 
 export default function page() {
   return (
-    <div className="py-5 z-[4]">
+    <div className="pb-5 z-[4]">
+      <NavBar />
       <div className="max-w-[1330px] mx-auto">
-        <NavBar />
-        <p className="bg-[#212426] text-white inline py-3 px-5 rounded-full">
+        <p className="bg-[#212426] text-white inline px-5 rounded-full">
           No-Code WordPress Site Builder
         </p>
         <div className="grid grid-cols-4 my-20 items-center">
@@ -160,7 +160,7 @@ export default function page() {
               className="blur-2xl  w-[800px] h-[800px] rounded-full"
             ></div>
           </div>
-          <div className="z-10 bg-[#17191a] p-12 rounded-2xl flex flex-col justify-end gap-6">
+          <div className=" bg-[#17191a] p-12 rounded-2xl flex flex-col justify-end gap-6">
             <Image width={35} height={35} alt="" src="/third-party1.svg" />
             <div className="flex flex-col gap-4">
               <p className="text-white font-semibold text-2xl">
