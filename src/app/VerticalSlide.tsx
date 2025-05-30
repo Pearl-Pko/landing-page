@@ -13,6 +13,7 @@ import next from "next";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import InfinityThumbnail from "./InfinityThumbnail";
+import SweepWhiteOverlay from "@/components/app/SweepWhiteOverlay";
 
 const cards = [
   {
@@ -176,13 +177,15 @@ export default function VerticalSlide() {
         <div className="sticky top-0 origin-top max-h-[830px] pt-[100px] ">
           <div className="flex flex-row gap-16 items-start overflow-hidden">
             {/* <div className="h-screen flex items-center sticky top-0"> */}
-            <motion.p
-              style={{ opacity: opacityValue, top: topValue }}
-              className="text-8xl text-white break-keep flex flex-col justify-center"
-            >
-              Create <span className="whitespace-nowrap">pixel-perfect</span>{" "}
-              accuracy in the atomic level{" "}
-            </motion.p>
+            <SweepWhiteOverlay delay={0.5}>
+              <motion.p
+                style={{ opacity: opacityValue, top: topValue }}
+                className="text-8xl break-keep flex flex-col justify-center"
+              >
+                Create <span className="whitespace-nowrap">pixel-perfect</span>{" "}
+                accuracy in the atomic level{" "}
+              </motion.p>
+            </SweepWhiteOverlay>
             {/* </div> */}
             <div
               ref={imageSliderRef}

@@ -11,6 +11,7 @@ import RadialBlurCursorEffect from "@/components/app/RadialBlurCursorEffect";
 import AppIntegration from "./AppIntegration";
 import OutlineEffect from "@/components/app/OutlineEffect";
 import Link from "next/link";
+import SweepWhiteOverlay from "@/components/app/SweepWhiteOverlay";
 
 const accordion1: AccordionType = {
   section: [
@@ -85,6 +86,7 @@ export default function page() {
     <div className="pb-5 z-[4]">
       <NavBar />
       <div className="max-w-[1330px] mx-auto">
+        <SweepWhiteOverlay />
         <p className="bg-[#212426] text-white inline px-5 rounded-full">
           No-Code WordPress Site Builder
         </p>
@@ -121,25 +123,36 @@ export default function page() {
         </div>
 
         <div>
-          <p className="text-8xl text-white mt-44">
-            Design pixel-perfect sites beyond ordinary
-          </p>
+          {/* <SweepWhiteOverlay */}
+          <div className="mt-44">
+            <SweepWhiteOverlay delay={0.5}>
+              <p className="text-8xl z-10 ">Design pixel-perfect sites</p>
+            </SweepWhiteOverlay>
+            <SweepWhiteOverlay delay={1}>
+              <p className="text-8xl ">beyond ordinary</p>
+            </SweepWhiteOverlay>
+          </div>
+
           <Accordion items={accordion1} />
         </div>
 
         <div>
-          <p className="text-8xl text-white mt-44">
-            Craft engaging and immersive interactions
-          </p>
+          <SweepWhiteOverlay delay={0.5}>
+            <p className="text-8xl mt-44">
+              Craft engaging and immersive interactions
+            </p>
+          </SweepWhiteOverlay>
           <Accordion items={accordion2} align="rtl" />
         </div>
       </div>
 
       <div className="bg-black">
         <div className="mx-auto">
-          <p className="max-w-[1330px] mx-auto text-8xl text-white py-28">
-            Scale your <span className="block">business with</span>
-          </p>
+          <SweepWhiteOverlay delay={0.5}>
+            <p className="max-w-[1330px] mx-auto text-8xl py-28">
+              Scale your <span className="block">business with</span>
+            </p>
+          </SweepWhiteOverlay>
           <StickyCards />
         </div>
       </div>
@@ -228,9 +241,11 @@ export default function page() {
       </div>
       <div className="bg-black relative">
         <div className="max-w-[1330px] mx-auto py-[128px] flex flex-col gap-[128px]">
-          <p className="text-white text-center text-6xl font-semibold">
-            Performance that <span className="block">sets you apart</span>
-          </p>
+          <SweepWhiteOverlay delay={0.5}>
+            <p className="text-center text-6xl font-semibold">
+              Performance that <span className="block">sets you apart</span>
+            </p>
+          </SweepWhiteOverlay>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <div className="flex flex-col gap-6 p-12">
