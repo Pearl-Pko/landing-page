@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -24,11 +25,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`bg-[#1C1E1F]`}
-      >
-        {children}
-      </body>
+      <head>
+        <meta
+          name="viewport"
+          content="height=device-height, 
+                      width=device-width, initial-scale=1.0, 
+                      minimum-scale=1.0, maximum-scale=1.0, 
+                      user-scalable=no, target-densitydpi=device-dpi"
+        ></meta>
+      </head>
+      <body className={`bg-[#1C1E1F] `}>{children}</body>
     </html>
   );
 }

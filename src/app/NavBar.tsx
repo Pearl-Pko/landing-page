@@ -1,10 +1,16 @@
 import { Button } from "@/components/ui/Button";
 import { dir } from "console";
-import { AnimatePresence, useMotionValueEvent, useScroll } from "motion/react";
+import {
+  AnimatePresence,
+  MotionConfig,
+  useMotionValueEvent,
+  useScroll,
+} from "motion/react";
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Arrow from "@/assets/arrow.svg";
+import { cn } from "@/utils/utils";
 
 const menus = {
   Product: [
@@ -113,10 +119,12 @@ const SubMenu = ({
   menu,
   navHeight,
   defaultMenu,
+  mobileNav,
 }: {
   menu: menus;
   defaultMenu: menus;
   navHeight: number;
+  mobileNav: boolean;
 }) => {
   return (
     // <AnimatePresence>
@@ -125,11 +133,11 @@ const SubMenu = ({
       key={menu}
       initial={{ height: 0 }}
       animate={{ height: "auto" }}
-      exit={{ height: 0 }}
+      exit={mobileNav ? { height: 0 } : {}}
       transition={{ ease: "easeOut" }}
-      className="absolute w-[674px] left-0 bg-[rgb(23,23,23,0.8)] backdrop-blur-md rounded-3xl overflow-hidden z-30"
+      className="lg:absolute origin-top  lg:w-[674px] lg:left-0 lg:bg-[rgb(23,23,23,0.8)] lg:backdrop-blur-md rounded-3xl overflow-hidden z-[50]"
     >
-      <div className="grid grid-cols-2 gap-y-[8px] gap-x-[18px] p-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-[8px] gap-x-[18px] p-6">
         {menus[menu].map((content, index) => (
           <motion.a
             href=""
@@ -140,7 +148,7 @@ const SubMenu = ({
             <Image alt="" width={24} height={24} src={content.url} />
             <div className="">
               <p className="text-white text-[16px]">{content.title}</p>
-              <p className="text-secondary text-[12px]">
+              <p className="hidden lg:block text-secondary text-[12px]">
                 {content.description}
               </p>
             </div>
@@ -157,11 +165,13 @@ const NavLink = ({
   setMenu,
   defaultMenu,
   navHeight,
+  mobileNav,
 }: {
   setMenu: (menu: menus | null) => void;
   selectedMenu: menus | null;
   defaultMenu: menus | null;
   navHeight: number;
+  mobileNav: boolean;
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [dimensions, setDimensions] = useState({
@@ -190,26 +200,33 @@ const NavLink = ({
       onHoverEnd={() => {
         setMenu(null);
       }}
-      onTapStart={() => setMenu(defaultMenu)}
-      whileTap={"hover"}
-      whileHover={"hover"}
+      // onBlur={() => {
+      //   if (defaultMenu === menu) setMenu(null);
+      // }}
+      onClick={() => {
+        if (menu === defaultMenu) setMenu(null); // close the drawer
+        else setMenu(defaultMenu);
+      }}
+      // whileHover={"focused"}
+      // whileFocus={"focused"}
+      animate={menu === defaultMenu ? "focused" : "blur"}
       variants={{}}
-      className="py-4 z-50"
+      className="py-4 z-50 "
     >
       <motion.p
-        variants={{ hover: { color: "white" } }}
-        className="text-secondary cursor-pointer flex flex-row gap-2 justify-center items-center"
+        variants={{ focused: { color: "white" } }}
+        className="text-secondary cursor-pointer flex flex-row gap-2 items-center"
       >
         {defaultMenu}
-        <motion.span variants={{ hover: { rotate: "180deg" } }}>
+        <motion.span variants={{ focused: { rotate: "180deg" } }}>
           <Image alt="" width={12} height={12} src="/arrow.svg" />
         </motion.span>
       </motion.p>
-      {menu && menu === defaultMenu && (
-        <div>
-          {
+      <AnimatePresence>
+        {menu && menu === defaultMenu && (
+          <div className="z-50">
             <div
-              className="fixed"
+              className="hidden lg:block fixed"
               style={{
                 left: dimensions.x + dimensions.width / 2 - 6,
                 top: dimensions.y + dimensions.height - 7,
@@ -217,14 +234,16 @@ const NavLink = ({
             >
               <Image alt="" width={12} height={7} src={"/tooltip-arrow.svg"} />
             </div>
-          }
-          <SubMenu
-            menu={menu}
-            defaultMenu={defaultMenu}
-            navHeight={navHeight}
-          />
-        </div>
-      )}
+
+            <SubMenu
+              menu={menu}
+              mobileNav={mobileNav}
+              defaultMenu={defaultMenu}
+              navHeight={navHeight}
+            />
+          </div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
@@ -234,6 +253,7 @@ export default function NavBar() {
   const container = useRef<HTMLDivElement | null>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [menu, setMenu] = useState<menus | null>(null);
+  const [showMobileNav, setShowMobileNav] = useState(false);
 
   const [scrollDirection, setScrollDirection] = useState(-1);
 
@@ -241,7 +261,7 @@ export default function NavBar() {
     if (!scrollYProgress.getPrevious()) return;
 
     const direction = latest - scrollYProgress.getPrevious()! >= 0 ? 1 : -1;
-    // console.log("direction", direction);
+    console.log("direction", dimensions);
     setScrollDirection(direction);
   });
 
@@ -260,45 +280,94 @@ export default function NavBar() {
   console.log("ss", scrollDirection);
 
   return (
+    // <div className="">
     <motion.div
       ref={container}
       initial={"down"}
-      animate={scrollDirection === 1 ? "up" : "down"}
+      animate={showMobileNav ? "down" : scrollDirection === 1 ? "up" : "down"}
       variants={{ up: { y: -dimensions.height }, down: { y: 0 } }}
       transition={{ duration: 0.45, ease: "easeInOut" }}
-      className=" sticky top-0 z-40"
+      className={cn("sticky top-0 z-40 lg:h-16", showMobileNav && "h-screen")}
     >
-      <div className="absolute inset-0 bg-[rgb(28,31,30,0.7)] backdrop-blur-md"></div>
-      <div className="flex justify-between max-w-[1330px] mx-auto z-20">
-        <div className="relative flex gap-10 items-stretch">
+      <div className="hidden lg:block absolute inset-0 bg-[rgb(28,31,30,0.8)]  backdrop-blur-lg"></div>
+      <div className="max-w-[1330px] bg-[rgb(28,31,30,0.9)]  backdrop-blur-xl w-full  mx-auto h-16 flex flex-row justify-between items-center z-40 p-3 lg:hidden">
+        <div className="z-[60]">
+          <Image src="/logo.svg" alt="" width={64} height={24} />
+        </div>
+        <div
+          onClick={() => {
+            setShowMobileNav((prev) => !prev);
+          }}
+          className="relative w-[38px] h-[38px] justify-center items-center flex flex-col gap-1"
+        >
+          <MotionConfig transition={{ duration: 0.3, ease: "easeInOut" }}>
+            <motion.div
+              animate={showMobileNav ? { rotate: 45, y: 6 } : {}}
+              className="w-[18px] h-[2px] bg-primary origin-center"
+            ></motion.div>
+            <motion.div
+              animate={showMobileNav ? { opacity: 0 } : {}}
+              className=" w-[18px] h-[2px] bg-primary"
+            ></motion.div>
+            <motion.div
+              animate={showMobileNav ? { rotate: -45, y: -6 } : {}}
+              className=" w-[18px] h-[2px] bg-primary origin-center"
+            ></motion.div>
+          </MotionConfig>
+        </div>
+      </div>
+
+      <motion.div
+        className={cn(
+          "flex flex-col items-start w-full bg-[rgb(28,31,30,0.9)] lg:bg-none  backdrop-blur-xl lg:backdrop-blur-none",
+          "lg:flex lg:flex-row pl-5 lg:pl-0 lg:justify-between max-w-[1330px] mx-auto   overflow-hidden lg:overflow-visible z-20 lg:h-16",
+          //bg-[rgb(28,31,30,0.7)]  backdrop-blur-md
+          showMobileNav && "overflow-y-scroll"
+        )}
+        initial={"hide"}
+        animate={showMobileNav ? "show" : "hide"}
+        variants={{
+          show: { height: "calc(100vh - var(--spacing) * 16" },
+          hide: { height: "0vh" },
+        }}
+
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
+        {/* <div className=" absolute inset-0 bg-[rgb(28,31,30,0.9)]  backdrop-blur-xl"></div> */}
+
+        <div className="relative flex flex-col items-stretch  lg:flex-row lg:gap-10 z-40">
           <div className="py-4">
             <p className="text-white ">Home</p>
           </div>
           <NavLink
             selectedMenu={menu}
+            mobileNav={showMobileNav}
             setMenu={setMenu}
             navHeight={dimensions.height}
             defaultMenu={"Product"}
           />
           <NavLink
             selectedMenu={menu}
+            mobileNav={showMobileNav}
             setMenu={setMenu}
             navHeight={dimensions.height}
             defaultMenu={"Resources"}
           />
           <NavLink
             selectedMenu={menu}
+            mobileNav={showMobileNav}
             setMenu={setMenu}
             navHeight={dimensions.height}
             defaultMenu={"Support"}
           />
           <p className="text-secondary py-4">Pricing</p>
         </div>
-        <div className="flex gap-5 justify-center py-2 items-center z-20">
+        <div className="flex flex-col lg:flex-row gap-5 justify-center py-2 items-center z-20">
           <Button variant="secondary" text="Login" />
           <Button text="Get Started">Get Started</Button>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
+    // </div>
   );
 }

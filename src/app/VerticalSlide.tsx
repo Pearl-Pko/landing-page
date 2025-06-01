@@ -253,10 +253,12 @@ export default function VerticalSlide() {
               className="h-screen flex flex-col mt-[448px]"
               style={{ opacity: opacityValue, top: topValue }}
             >
-              <p className="text-white text-2xl">
-                Create your website from the ground up with complete control
-                over every element, down to the smallest detail
-              </p>
+              <SweepWhiteOverlay delay={0.5}>
+                <p className="text-2xl">
+                  Create your website from the ground up with complete control
+                  over every element, down to the smallest detail
+                </p>
+              </SweepWhiteOverlay>
               <Button text="Get started with tutorials" variant="link" />
             </motion.div>
           </div>

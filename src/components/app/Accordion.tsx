@@ -16,7 +16,13 @@ export type AccordionType = {
 
 const transition: Transition = { duration: 0.6, ease: "easeInOut" };
 
-export default function Accordion({ items, align = "ltr" }: { items: AccordionType , align?: "ltr" | "rtl"}) {
+export default function Accordion({
+  items,
+  align = "ltr",
+}: {
+  items: AccordionType;
+  align?: "ltr" | "rtl";
+}) {
   const [direction, setDirection] = useState<number>(1);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
@@ -45,9 +51,12 @@ export default function Accordion({ items, align = "ltr" }: { items: AccordionTy
               >
                 <div className="flex flex-col items-center">
                   <div className="h-10 flex items-center">
-                    <div className="w-[7px] h-[7px] bg-primary rounded-full"></div>
+                    <div className="relative w-[7px] h-[7px] ">
+                      <motion.div transition={transition} variants={{inactive: {scale: 0}, active: {scale: 1}}} className="absolute -inset-2 bg-secondary/10 rounded-full"></motion.div>
+                      <div className="absolute bg-primary rounded-full w-full h-full"></div>
+                    </div>
                   </div>
-                  <div className="w-[1.5px] flex-1  min-h-12 h-3/4 bg-secondary rounded-full"></div>
+                  <div className="w-[1.5px] flex-1  min-h-12 h-3/4 bg-secondary/10 rounded-full"></div>
                 </div>
 
                 <div
@@ -59,11 +68,11 @@ export default function Accordion({ items, align = "ltr" }: { items: AccordionTy
                 >
                   <motion.p
                     variants={{
-                      inactive: { scale: 0.7 },
-                      active: { scale: 1 },
+                      inactive: { scale: 0.7, color: "var(--color-secondary)" },
+                      active: { scale: 1 , color: "white"},
                     }}
                     transition={transition}
-                    className="text-white text-3xl font-semibold text-left origin-left"
+                    className="text-3xl font-semibold text-left origin-left"
                   >
                     {item.title}
                   </motion.p>
@@ -91,7 +100,7 @@ export default function Accordion({ items, align = "ltr" }: { items: AccordionTy
         <div
           className={cn(
             "col-span-3 inline-flex relative h-[500px] overflow-hidden row-start-1",
-           align === "rtl" && "col-start-1"
+            align === "rtl" && "col-start-1"
           )}
         >
           <AnimatePresence custom={direction} initial={false}>
