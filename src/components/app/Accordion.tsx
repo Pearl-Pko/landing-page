@@ -29,11 +29,11 @@ export default function Accordion({
   const selectedItem = items["section"][selectedIndex];
   const selectedImage = items["image"][selectedIndex];
   return (
-    <div className="h-lvh grid place-content-center">
-      <div className="grid grid-cols-5  gap-70">
+    <div className="lg:h-lvh grid lg:place-content-center">
+      <div className="lg:grid grid-cols-5 gap-70">
         <div
           className={cn(
-            "inline-flex flex-col col-span-2 gap-5 row-start-1",
+            "flex flex-col col-span-2 gap-5 row-start-1",
             align === "rtl" && "col-start-4"
           )}
         >
@@ -52,7 +52,14 @@ export default function Accordion({
                 <div className="flex flex-col items-center">
                   <div className="h-10 flex items-center">
                     <div className="relative w-[7px] h-[7px] ">
-                      <motion.div transition={transition} variants={{inactive: {scale: 0}, active: {scale: 1}}} className="absolute -inset-2 bg-secondary/10 rounded-full"></motion.div>
+                      <motion.div
+                        transition={transition}
+                        variants={{
+                          inactive: { scale: 0 },
+                          active: { scale: 1 },
+                        }}
+                        className="absolute -inset-2 bg-secondary/10 rounded-full"
+                      ></motion.div>
                       <div className="absolute bg-primary rounded-full w-full h-full"></div>
                     </div>
                   </div>
@@ -68,11 +75,11 @@ export default function Accordion({
                 >
                   <motion.p
                     variants={{
-                      inactive: { scale: 0.7, color: "var(--color-secondary)" },
-                      active: { scale: 1 , color: "white"},
+                      inactive: { scale: 0.7, opacity: 0.5 },
+                      active: { scale: 1, opacity: 1 },
                     }}
                     transition={transition}
-                    className="text-3xl font-semibold text-left origin-left"
+                    className="text-2xl text-white lg:text-3xl font-semibold text-left origin-left"
                   >
                     {item.title}
                   </motion.p>
@@ -83,12 +90,24 @@ export default function Accordion({
                         animate={{ height: "auto" }}
                         exit={{ height: 0 }}
                         transition={transition}
-                        className="overflow-hidden"
+                        className="overflow-hidden flex flex-col lg:block gap-[18px]"
                       >
-                        <div className="text-secondary">{item.body}</div>
-                        {item.link && (
-                          <Button variant="link" text="View Details" />
-                        )}
+                        <div>
+                          <div className="text-secondary">{item.body}</div>
+                          {item.link && (
+                            <Button variant="link" text="View Details" />
+                          )}
+                        </div>
+                        <Image
+                          style={{
+                            objectFit: "cover",
+                          }}
+                          alt=""
+                          width={200}
+                          height={200}
+                          className="lg:hidden w-full rounded-xl"
+                          src={items.image[index]}
+                        />
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -99,7 +118,7 @@ export default function Accordion({
         </div>
         <div
           className={cn(
-            "col-span-3 inline-flex relative h-[500px] overflow-hidden row-start-1",
+            "hidden lg:inline-block col-span-3 h-[500px] relative overflow-hidden row-start-1",
             align === "rtl" && "col-start-1"
           )}
         >

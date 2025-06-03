@@ -290,7 +290,7 @@ export default function NavBar() {
       className={cn("sticky top-0 z-40 lg:h-16", showMobileNav && "h-screen")}
     >
       <div className="hidden lg:block absolute inset-0 bg-[rgb(28,31,30,0.8)]  backdrop-blur-lg"></div>
-      <div className="max-w-[1330px] bg-[rgb(28,31,30,0.9)]  backdrop-blur-xl w-full  mx-auto h-16 flex flex-row justify-between items-center z-40 p-3 lg:hidden">
+      <div className="max-w-[1330px] bg-[rgb(28,31,30,0.9)]  backdrop-blur-xl w-full  mx-auto px-4 h-16 flex flex-row justify-between items-center z-40 lg:hidden">
         <div className="z-[60]">
           <Image src="/logo.svg" alt="" width={64} height={24} />
         </div>

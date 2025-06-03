@@ -173,14 +173,14 @@ export default function VerticalSlide() {
 
   return (
     <motion.div style={{ background: backgroundValue }}>
-      <div ref={targetRef} className="mx-auto  max-w-[1330px] h-[200vh]">
-        <div className="sticky top-0 origin-top max-h-[830px] pt-[100px] ">
-          <div className="flex flex-row gap-16 items-start overflow-hidden">
+      <div ref={targetRef} className="mx-auto  max-w-[1330px] h-[200vh] px-4">
+        <div className="lg:sticky lg:top-0 origin-top max-h-[830px] pt-[100px] ">
+          <div className="flex flex-col lg:flex-row gap-16 items-start overflow-hidden">
             {/* <div className="h-screen flex items-center sticky top-0"> */}
             <SweepWhiteOverlay delay={0.5}>
               <motion.p
                 style={{ opacity: opacityValue, top: topValue }}
-                className="text-8xl break-keep flex flex-col justify-center"
+                className="text-5xl lg:text-8xl break-keep flex flex-col justify-center font-semibold"
               >
                 Create <span className="whitespace-nowrap">pixel-perfect</span>{" "}
                 accuracy in the atomic level{" "}
@@ -193,7 +193,7 @@ export default function VerticalSlide() {
             >
               <motion.div
                 style={{ y: transform }}
-                className="flex   flex-col items-stretch justify-between gap-4"
+                className="flex flex-col items-stretch justify-between gap-4"
               >
                 {cards.map((card, ind) => {
                   const distance = useTransform(index, (i) =>
@@ -265,12 +265,14 @@ export default function VerticalSlide() {
         </div>
       </div>
       <div className="max-w-[1330px] mx-auto">
-        <div className="grid mx-auto  grid-cols-2 px-20 ">
-          <p className="text-6xl text-white col-start-2 font-semibold">
+        <div className="grid mx-auto grid-cols-1 lg:grid-cols-2 px-4 lg:px-20 ">
+          <p className="text-3xl lg:text-6xl text-white  lg:col-start-2 font-semibold">
             Jumpstart your business with beautifully crafted themes and sections
           </p>
         </div>
-        <InfinityThumbnail />
+        <div className="py-12 lg:pt-0 lg:pb-32">
+          <InfinityThumbnail />
+        </div>
       </div>
     </motion.div>
   );

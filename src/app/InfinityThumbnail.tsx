@@ -80,16 +80,17 @@ const MarqueeContent = ({
 
 export default function InfinityThumbnail() {
   return (
-    <div className="relative">
+    <div className="relative flex flex-col">
       {/* <RadialBlurCursorEffect> */}
-        <div className="flex  flex-col gap-7 min-h-[660px]">
-          <Image alt="" width={50} height={50} src="/plane.svg" />
-          <p className="text-white text-2xl w-[28%] min-w-[320px]">
-            Launch with ease using stunning, ready-to-use themse & sections
-            designed for every need
-          </p>
-        </div>
-        <div className="absolute h-auto w-[65%]  inset-0 min-w-auto top-[95px] flex overflow-hidden flex-col right-0 left-auto bottom-0 ">
+      <div className="mb-10 lg:mb-0 flex  flex-col gap-7 lg:min-h-[660px] px-4">
+        <Image alt="" width={50} height={50} src="/plane.svg" />
+        <p className="text-white leading-[1] text-lg lg:text-2xl w-[28%] min-w-[320px]">
+          Launch with ease using stunning, ready-to-use themse & sections
+          designed for every need
+        </p>
+      </div>
+      <div className="relative h-auto lg:min-h-auto lg:static z-[20]">
+        <div className="lg:absolute h-auto w-full lg:w-[65%]  inset-0 min-w-auto top-[95px] flex overflow-hidden flex-col right-0 left-auto bottom-0 ">
           <div className="overflow-hidden relative h-auto">
             {contents.map((content, index) => {
               return (
@@ -121,28 +122,12 @@ export default function InfinityThumbnail() {
               );
             })}
 
-            <div className="absolute top-0 left-0 bottom-0 w-[120px] bg-gradient-to-r from-black   to-transparent"></div>
-            <div className="absolute top-0 right-0 bottom-0 w-[120px] bg-gradient-to-l from-black   to-transparent"></div>
+            <div className="absolute top-0 left-0 bottom-0 w-[50px] lg:w-[120px] bg-gradient-to-r from-black   to-transparent"></div>
+            <div className="absolute top-0 right-0 bottom-0 w-[50px] lg:w-[120px] bg-gradient-to-l from-black   to-transparent"></div>
           </div>
-          {/* 
-        <Image
-          width={900}
-          height={400}
-          alt="image"
-          src={
-            "https://droip.com/wp-content/uploads/2025/03/Template-Thumbnail-10.webp"
-          }
-        />
-        <Image
-          width={900}
-          height={400}
-          alt="image"
-          src={
-            "https://droip.com/wp-content/uploads/2025/03/Template-Thumbnail-2.webp"
-          }
-        /> */}
         </div>
-      <RadialBlurCursorEffect/>
+      </div>
+      <RadialBlurCursorEffect />
     </div>
   );
 }
