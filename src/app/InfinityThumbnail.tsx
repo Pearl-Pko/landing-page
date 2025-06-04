@@ -84,7 +84,7 @@ export default function InfinityThumbnail() {
       {/* <RadialBlurCursorEffect> */}
       <div className="mb-10 lg:mb-0 flex  flex-col gap-7 lg:min-h-[660px] px-4">
         <Image alt="" width={50} height={50} src="/plane.svg" />
-        <p className="text-white leading-[1] text-lg lg:text-2xl w-[28%] min-w-[320px]">
+        <p className="text-white leading-[1] text-lg lg:text-2xl lg:w-[28%] min-w-[320px]">
           Launch with ease using stunning, ready-to-use themse & sections
           designed for every need
         </p>
