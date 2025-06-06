@@ -216,7 +216,7 @@ const NavLink = ({
       <motion.p
         variants={{ focused: { color: "white" } }}
         className="text-secondary cursor-pointer flex flex-row gap-2 h-full items-center"
-      > 
+      >
         {defaultMenu}
         <motion.span variants={{ focused: { rotate: "180deg" } }}>
           <Image alt="" width={12} height={12} src="/arrow.svg" />
@@ -287,10 +287,10 @@ export default function NavBar() {
       animate={showMobileNav ? "down" : scrollDirection === 1 ? "up" : "down"}
       variants={{ up: { y: -dimensions.height }, down: { y: 0 } }}
       transition={{ duration: 0.45, ease: "easeInOut" }}
-      className={cn("sticky top-0 z-40 lg:h-16", showMobileNav && "h-screen")}
+      className={cn("sticky top-0 z-40 lg:h-16", showMobileNav && "")}
     >
       <div className="hidden lg:block absolute inset-0 bg-[rgb(28,31,30,0.8)]  backdrop-blur-lg"></div>
-      <div className="max-w-[1330px] bg-[rgb(28,31,30,0.9)]  backdrop-blur-xl w-full  mx-auto px-4 h-16 flex flex-row justify-between items-center z-40 lg:hidden">
+      <div className="max-w-[1330px]  w-full bg-[rgb(28,31,30,0.9)]  backdrop-blur-xl  mx-auto px-4 h-16 flex flex-row justify-between items-center z-40 lg:hidden">
         <div className="z-[60]">
           <Image src="/logo.svg" alt="" width={64} height={24} />
         </div>
@@ -319,7 +319,7 @@ export default function NavBar() {
 
       <motion.div
         className={cn(
-          " w-full bg-[rgb(28,31,30,0.9)] lg:bg-none  backdrop-blur-xl lg:backdrop-blur-none overflow-hidden lg:overflow-visible",
+          " w-full h-0 bg-[rgb(28,31,30,0.9)] absolute lg:static lg:bg-none  backdrop-blur-xl lg:backdrop-blur-none overflow-hidden lg:overflow-visible",
           showMobileNav && "overflow-y-scroll"
         )}
         initial={"hide"}
@@ -333,16 +333,17 @@ export default function NavBar() {
         <div
           className={cn(
             "flex flex-col items-start lg:items-center",
-            "lg:flex lg:flex-row pl-5  lg:px-4 lg:justify-between max-w-[1330px] mx-auto z-20  lg:h-16 text-lg lg:text-sm"
+            "lg:flex lg:flex-row px-5  lg:px-4 lg:justify-between max-w-[1330px] mx-auto z-20  lg:h-16 text-lg lg:text-sm"
             //bg-[rgb(28,31,30,0.7)]  backdrop-blur-md
           )}
         >
           {/* <div className=" absolute inset-0 bg-[rgb(28,31,30,0.9)]  backdrop-blur-xl"></div> */}
 
-          <div className="relative flex flex-col lg:items-center h-full lg:flex-row lg:gap-10 z-40 ">
+          <div className="relative flex flex-col lg:items-center w-full lg:w-auto h-full lg:flex-row lg:gap-10 z-40 ">
             <div className="py-4">
               <p className="text-white ">Home</p>
             </div>
+            <div className="lg:hidden bg-primary/20 h-[2px] w-full mb-2"></div>
             <NavLink
               selectedMenu={menu}
               mobileNav={showMobileNav}
@@ -350,6 +351,8 @@ export default function NavBar() {
               navHeight={dimensions.height}
               defaultMenu={"Product"}
             />
+            <div className="lg:hidden bg-primary/20 h-[2px] w-full mb-2"></div>
+
             <NavLink
               selectedMenu={menu}
               mobileNav={showMobileNav}
@@ -357,6 +360,8 @@ export default function NavBar() {
               navHeight={dimensions.height}
               defaultMenu={"Resources"}
             />
+            <div className="lg:hidden bg-primary/20 h-[2px] w-full mb-2"></div>
+
             <NavLink
               selectedMenu={menu}
               mobileNav={showMobileNav}
@@ -364,10 +369,15 @@ export default function NavBar() {
               navHeight={dimensions.height}
               defaultMenu={"Support"}
             />
+            <div className="lg:hidden bg-primary/20 h-[2px] w-full mb-2"></div>
+
             <p className="text-secondary py-4">Pricing</p>
+            <div className="lg:hidden bg-primary/20 h-[2px] w-full mb-2"></div>
           </div>
-          <div className="flex flex-col lg:flex-row gap-5 justify-center py-2 items-center z-20">
+          <div className="flex flex-col w-full lg:w-auto lg:flex-row gap-4 lg:gap-5 justify-center py-2 items-start lg:items-center z-20">
             <Button variant="secondary" text="Login" />
+            <div className="lg:hidden bg-primary/20 h-[2px] w-full mb-2"></div>
+
             <Button text="Get Started">Get Started</Button>
           </div>
         </div>

@@ -29,7 +29,6 @@ export default function Accordion({
   const selectedItem = items["section"][selectedIndex];
   const selectedImage = items["image"][selectedIndex];
 
-  console.log("what happened", direction, selectedIndex);
   return (
     <MotionConfig transition={{ duration: 0.6, ease: "easeOut" }}>
       <div className="lg:h-lvh lg:flex items-center">
@@ -167,11 +166,9 @@ export default function Accordion({
               >
                 <Image
                   alt="image"
-                  // fill
                   width={1536}
                   height={1086}
                   src={selectedImage}
-                  // style={{ objectFit: "cover",  }}
                   className={
                     "rounded-2xl w-full h-full bg-no-repeat object-cover object-top-left"
                   }
