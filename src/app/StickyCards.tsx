@@ -62,12 +62,12 @@ export default function StickyCards() {
             key={index}
             ref={[targetRef1, targetRef2, targetRef3][index]}
             style={{ scaleX: [scale1, scale2, scale3][index] }}
-            className="sticky w-full max-w-[1330px] mx-auto top-[calc((100vh-600px)/2)] mb-[calc((100vh-600px)/2)] px-4 py-8 lg:p-10 lg:pr-0 bg-[#212426] rounded-3xl flex flex-col lg:flex-row justify-between gap-24 h-[600px]"
+            className="sticky w-full max-w-[1330px] mx-auto top-[calc((100vh-600px)/2)] mb-[calc((100vh-600px)/2)] px-4 py-8 md:p-10 md:pr-0 bg-[#212426] rounded-3xl flex flex-col md:flex-row justify-between gap-24 h-[600px]"
           >
-            <div className="flex flex-col  gap-8 lg:justify-between flex-1">
-              <p className="text-white text-2xl lg:text-3xl font-semibold">{card.title}</p>
-              <div className="text-base lg:text-2xl lg:my-20">
-                <p className="text-secondary lg:text-white">{card.description}</p>
+            <div className="flex flex-col  gap-8 md:justify-between flex-1">
+              <p className="text-white text-2xl md:text-3xl font-semibold">{card.title}</p>
+              <div className="text-base md:text-2xl md:my-20">
+                <p className="text-secondary md:text-white">{card.description}</p>
                 <Button variant="link" text="View Details" />
               </div>
             </div>

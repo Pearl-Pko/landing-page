@@ -211,12 +211,12 @@ const NavLink = ({
       // whileFocus={"focused"}
       animate={menu === defaultMenu ? "focused" : "blur"}
       variants={{}}
-      className="py-4 z-50 "
+      className="py-4 lg:py-0 z-50 h-full"
     >
       <motion.p
         variants={{ focused: { color: "white" } }}
-        className="text-secondary cursor-pointer flex flex-row gap-2 items-center"
-      >
+        className="text-secondary cursor-pointer flex flex-row gap-2 h-full items-center"
+      > 
         {defaultMenu}
         <motion.span variants={{ focused: { rotate: "180deg" } }}>
           <Image alt="" width={12} height={12} src="/arrow.svg" />
@@ -224,12 +224,12 @@ const NavLink = ({
       </motion.p>
       <AnimatePresence>
         {menu && menu === defaultMenu && (
-          <div className="z-50">
+          <div className="z-[100]">
             <div
               className="hidden lg:block fixed"
               style={{
                 left: dimensions.x + dimensions.width / 2 - 6,
-                top: dimensions.y + dimensions.height - 7,
+                top: dimensions.y + dimensions.height,
               }}
             >
               <Image alt="" width={12} height={7} src={"/tooltip-arrow.svg"} />
@@ -319,9 +319,7 @@ export default function NavBar() {
 
       <motion.div
         className={cn(
-          "flex flex-col items-start w-full bg-[rgb(28,31,30,0.9)] lg:bg-none  backdrop-blur-xl lg:backdrop-blur-none",
-          "lg:flex lg:flex-row pl-5 lg:pl-0 lg:justify-between max-w-[1330px] mx-auto   overflow-hidden lg:overflow-visible z-20 lg:h-16",
-          //bg-[rgb(28,31,30,0.7)]  backdrop-blur-md
+          " w-full bg-[rgb(28,31,30,0.9)] lg:bg-none  backdrop-blur-xl lg:backdrop-blur-none overflow-hidden lg:overflow-visible",
           showMobileNav && "overflow-y-scroll"
         )}
         initial={"hide"}
@@ -330,41 +328,48 @@ export default function NavBar() {
           show: { height: "calc(100vh - var(--spacing) * 16" },
           hide: { height: "0vh" },
         }}
-
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        {/* <div className=" absolute inset-0 bg-[rgb(28,31,30,0.9)]  backdrop-blur-xl"></div> */}
+        <div
+          className={cn(
+            "flex flex-col items-start lg:items-center",
+            "lg:flex lg:flex-row pl-5  lg:px-4 lg:justify-between max-w-[1330px] mx-auto z-20  lg:h-16 text-lg lg:text-sm"
+            //bg-[rgb(28,31,30,0.7)]  backdrop-blur-md
+          )}
+        >
+          {/* <div className=" absolute inset-0 bg-[rgb(28,31,30,0.9)]  backdrop-blur-xl"></div> */}
 
-        <div className="relative flex flex-col items-stretch  lg:flex-row lg:gap-10 z-40">
-          <div className="py-4">
-            <p className="text-white ">Home</p>
+          <div className="relative flex flex-col lg:items-center h-full lg:flex-row lg:gap-10 z-40 ">
+            <div className="py-4">
+              <p className="text-white ">Home</p>
+            </div>
+            <NavLink
+              selectedMenu={menu}
+              mobileNav={showMobileNav}
+              setMenu={setMenu}
+              navHeight={dimensions.height}
+              defaultMenu={"Product"}
+            />
+            <NavLink
+              selectedMenu={menu}
+              mobileNav={showMobileNav}
+              setMenu={setMenu}
+              navHeight={dimensions.height}
+              defaultMenu={"Resources"}
+            />
+            <NavLink
+              selectedMenu={menu}
+              mobileNav={showMobileNav}
+              setMenu={setMenu}
+              navHeight={dimensions.height}
+              defaultMenu={"Support"}
+            />
+            <p className="text-secondary py-4">Pricing</p>
           </div>
-          <NavLink
-            selectedMenu={menu}
-            mobileNav={showMobileNav}
-            setMenu={setMenu}
-            navHeight={dimensions.height}
-            defaultMenu={"Product"}
-          />
-          <NavLink
-            selectedMenu={menu}
-            mobileNav={showMobileNav}
-            setMenu={setMenu}
-            navHeight={dimensions.height}
-            defaultMenu={"Resources"}
-          />
-          <NavLink
-            selectedMenu={menu}
-            mobileNav={showMobileNav}
-            setMenu={setMenu}
-            navHeight={dimensions.height}
-            defaultMenu={"Support"}
-          />
-          <p className="text-secondary py-4">Pricing</p>
-        </div>
-        <div className="flex flex-col lg:flex-row gap-5 justify-center py-2 items-center z-20">
-          <Button variant="secondary" text="Login" />
-          <Button text="Get Started">Get Started</Button>
+          <div className="flex flex-col lg:flex-row gap-5 justify-center py-2 items-center z-20">
+            <Button variant="secondary" text="Login" />
+            <Button text="Get Started">Get Started</Button>
+          </div>
         </div>
       </motion.div>
     </motion.div>
