@@ -14,7 +14,7 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import InfinityThumbnail from "./InfinityThumbnail";
 import SweepWhiteOverlay from "@/components/app/SweepWhiteOverlay";
-
+import Spinner from "@/assets/spinner.svg";
 const cards = [
   {
     image: "https://droip.com/wp-content/uploads/2025/03/vertical-slider2.webp",
@@ -303,9 +303,18 @@ export default function VerticalSlide() {
               </div>
             </div>
             <motion.div
-              className="lg:h-screen flex flex-col my-[30px] lg:mt-[448px] lg:mb-0"
+              className="lg:h-screen flex flex-col my-[30px] gap-3 lg:gap-5 lg:mt-[448px] lg:mb-0"
               style={{ opacity: opacityValue, top: topValue }}
             >
+              <div className="relative size-16 ">
+                <motion.div
+                
+                  animate={{ rotate: "720deg" }}
+                  transition={{ repeat: Infinity, duration: 15, ease: "linear", repeatDelay: 0 }}
+                >
+                  <Spinner style={{ display: "inline" }} className="inline" />
+                </motion.div>
+              </div>
               <SweepWhiteOverlay delay={0.5}>
                 <p className="text-lg lg:text-2xl">
                   Create your website from the ground up with complete control
