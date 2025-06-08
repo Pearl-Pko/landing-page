@@ -1,15 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useMotionValue } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useSpring,
+} from "motion/react";
+import { cn } from "@/utils/utils";
 
-export default function RadialBlurCursorEffect({}: // children,
-{
-  // children: React.ReactNode;
+export default function RadialBlurCursorEffect({
+  children,
+  size = 700,
+  hideOverflow = false,
+  hitSlop = { top: 0, bottom: 0, left: 0, right: 0 },
+}: {
+  children: React.ReactNode | React.ReactNode[];
+  blurRadius?: number;
+  hideOverflow?: boolean;
+  size?: number;
+  hitSlop?: { top: number; bottom: number; left: number; right: number };
 }) {
-  // FIX: the cursor effect does not fade out when the user scrolls past the content only when they move the cursor
   const [show, setShow] = useState(false);
   const parentRef = useRef<HTMLDivElement | null>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const smoothX = useSpring(mouseX, { stiffness: 350, damping: 50 });
+  const smoothY = useSpring(mouseY, { stiffness: 350, damping: 50 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -20,13 +35,23 @@ export default function RadialBlurCursorEffect({}: // children,
 
       const rect = parentRef.current.getBoundingClientRect();
 
+      const hitbox = {
+        left: rect.left + hitSlop.left,
+        right: rect.right + hitSlop.right,
+        top: rect.top + hitSlop.top,
+        bottom: rect.bottom + hitSlop.bottom,
+      };
+
       const isInside =
-        x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+        x >= hitbox.left &&
+        x <= hitbox.right &&
+        y >= hitbox.top &&
+        y <= hitbox.bottom;
 
       if (isInside) {
         setShow(true);
-        mouseX.set(x);
-        mouseY.set(y);
+        mouseX.set(x - rect.x);
+        mouseY.set(y - rect.y);
       } else {
         setShow(false);
       }
@@ -37,25 +62,27 @@ export default function RadialBlurCursorEffect({}: // children,
   }, [mouseX, mouseY]);
 
   return (
-    <>
-      <motion.div ref={parentRef} className="absolute inset-0 overflow-hidden">
-        <AnimatePresence>
-          {show && (
-            <motion.div
-              initial={{opacity: 1}}
-              className="fixed blur-3xl inset-0 origin-top-left w-[1000px] h-[1000px] -translate-x-1/2 -translate-y-1/2 rounded-full"
-              style={{
-                x: mouseX,
-                y: mouseY,
-                background:
-                  "radial-gradient(circle,rgba(27, 10, 154, 0.25) 0%, rgba(27, 10, 154, 0) 100%)",
-              }}
-              exit={{opacity: 0}}
-              transition={{duration: 0.5}}
-            ></motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-    </>
+    <div ref={parentRef} className={cn("relative overflow-hidden z-30", !hideOverflow && "overflow-visible")}>
+      <AnimatePresence>
+        {show && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            className="absolute blur-2xl inset-0 origin-top-left -translate-x-1/2 -z-10 -translate-y-1/2 rounded-full"
+            style={{
+              x: smoothX,
+              y: smoothY,
+              width: `${size}px`,
+              height: `${size}px`,
+
+              background:
+                "radial-gradient(circle,rgba(27, 10, 154, 0.5) 0%, rgba(27, 10, 154, 0) 100%)",
+            }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          ></motion.div>
+        )}
+      </AnimatePresence>
+      {children}
+    </div>
   );
 }

@@ -237,57 +237,58 @@ export default function page() {
         </div>
       </div>
       <div className="bg-black relative mb-16">
-        <div className="max-w-[1330px] px-4 mx-auto py-[128px] flex flex-col gap-16 lg:gap-32">
-          <SweepWhiteOverlay delay={0.5}>
-            <p className="text-center text-3xl lg:text-6xl font-semibold">
-              Performance that <span className="block">sets you apart</span>
-            </p>
-          </SweepWhiteOverlay>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <div>
-              <div className="flex flex-col gap-6 p-6 lg:p-12">
-                <p className="text-white font-semibold text-2xl lg:text-3xl">
-                  Clean code output
-                </p>
-                <p className="text-secondary font-semibold text-base lg:text-lg">
-                  Droip generates minimal, well-structured code that is free
-                  from unnecessary bloat ensuring efficiency.
-                </p>
+        <RadialBlurCursorEffect>
+          <div className="max-w-[1330px] px-4 mx-auto py-[128px] flex flex-col gap-16 lg:gap-32">
+            <SweepWhiteOverlay delay={0.5}>
+              <p className="text-center text-3xl lg:text-6xl font-semibold">
+                Performance that <span className="block">sets you apart</span>
+              </p>
+            </SweepWhiteOverlay>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <div>
+                <div className="flex flex-col gap-6 p-6 lg:p-12">
+                  <p className="text-white font-semibold text-2xl lg:text-3xl">
+                    Clean code output
+                  </p>
+                  <p className="text-secondary font-semibold text-base lg:text-lg">
+                    Droip generates minimal, well-structured code that is free
+                    from unnecessary bloat ensuring efficiency.
+                  </p>
+                </div>
+                <Image
+                  width={900}
+                  height={400}
+                  style={{ objectFit: "contain" }}
+                  className="rounded-xl"
+                  src={
+                    "https://droip.com/wp-content/uploads/2025/03/clean-code.webp"
+                  }
+                  alt="image"
+                />
               </div>
-              <Image
-                width={900}
-                height={400}
-                style={{ objectFit: "contain" }}
-                className="rounded-xl"
-                src={
-                  "https://droip.com/wp-content/uploads/2025/03/clean-code.webp"
-                }
-                alt="image"
-              />
-            </div>
-            <div>
-              <div className="flex flex-col gap-6 p-6 lg:p-12">
-                <p className="text-white font-semibold text-2xl lg:text-3xl">
-                  Keep website lightweight
-                </p>
-                <p className="text-secondary font-semibold text-base lg:text-lg">
-                  Optimized code means faster load times, improved performance,
-                  and a smoother user experience.
-                </p>
+              <div>
+                <div className="flex flex-col gap-6 p-6 lg:p-12">
+                  <p className="text-white font-semibold text-2xl lg:text-3xl">
+                    Keep website lightweight
+                  </p>
+                  <p className="text-secondary font-semibold text-base lg:text-lg">
+                    Optimized code means faster load times, improved
+                    performance, and a smoother user experience.
+                  </p>
+                </div>
+                <Image
+                  width={900}
+                  height={400}
+                  style={{ objectFit: "cover" }}
+                  src={
+                    "https://droip.com/wp-content/uploads/2025/03/lightweight.webp"
+                  }
+                  alt="image"
+                />
               </div>
-              <Image
-                width={900}
-                height={400}
-                style={{ objectFit: "cover" }}
-                src={
-                  "https://droip.com/wp-content/uploads/2025/03/lightweight.webp"
-                }
-                alt="image"
-              />
             </div>
           </div>
-        </div>
-        <RadialBlurCursorEffect />
+        </RadialBlurCursorEffect>
       </div>
       <AppIntegration />
       <div className="py-16 lg:py-32 max-w-[1330px] mx-auto px-4">
@@ -489,19 +490,25 @@ export default function page() {
           </div>
         </div>
       </div>
-      <div className="px-4">
-        <div className="relative bg-black max-w-[1330px] mx-auto mt-8 p-8 gap-8 lg:p-16 rounded-2xl flex flex-col lg:flex-row justify-between items-center overflow-hidden">
-          <p className="text-white text-4xl lg:text-6xl max-w-[370px] font-semibold ">
-            Get Started For Free
-          </p>
-          <div className="max-w-[375px] flex flex-col gap-8">
-            <p className="text-secondary text-sm lg:text-base">
-              Experience the power of Droip no-code website builder, risk free.
-              Create stunning, responsive sites with pure creative freedom.
-            </p>
-            <Button text="Try for Free" />
+      <div className="px-4 mt-8">
+        <div className=" max-w-[1330px] mx-auto ">
+          <div className="bg-black rounded-2xl overflow-hidden">
+            <RadialBlurCursorEffect size={800}>
+              <div className=" p-8 gap-8 lg:p-16  flex flex-col lg:flex-row justify-between items-center">
+                <p className="text-white text-4xl lg:text-6xl max-w-[370px] font-semibold ">
+                  Get Started For Free
+                </p>
+                <div className="max-w-[375px] flex flex-col gap-8">
+                  <p className="text-white text-sm lg:text-base">
+                    Experience the power of Droip no-code website builder, risk
+                    free. Create stunning, responsive sites with pure creative
+                    freedom.
+                  </p>
+                  <Button text="Try for Free" />
+                </div>
+              </div>
+            </RadialBlurCursorEffect>
           </div>
-          <RadialBlurCursorEffect />
         </div>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-5 max-w-[1330px] gap-y-12 gap-x-6 mx-auto mt-[100px] py-8 lg:mt-[134px] px-4">

@@ -15,6 +15,7 @@ import React, { useEffect, useRef, useState } from "react";
 import InfinityThumbnail from "./InfinityThumbnail";
 import SweepWhiteOverlay from "@/components/app/SweepWhiteOverlay";
 import Spinner from "@/assets/spinner.svg";
+import RadialBlurCursorEffect from "@/components/app/RadialBlurCursorEffect";
 const cards = [
   {
     image: "https://droip.com/wp-content/uploads/2025/03/vertical-slider2.webp",
@@ -215,15 +216,18 @@ export default function VerticalSlide() {
         <div className="lg:sticky lg:top-0 origin-top lg:max-h-[830px] pt-[100px] ">
           <div className="flex flex-col lg:flex-row lg:gap-16 items-start lg:overflow-hidden">
             {/* <div className="h-screen flex items-center sticky top-0"> */}
-            <motion.p
+            <motion.div
               style={{ opacity: opacityValue, top: topValue }}
               className="text-5xl lg:text-8xl break-keep flex flex-col justify-center font-semibold"
             >
               <SweepWhiteOverlay delay={0.5}>
-                Create <span className="whitespace-nowrap">pixel-perfect</span>{" "}
-                accuracy in the atomic level{" "}
+                <p>
+                  Create{" "}
+                  <span className="whitespace-nowrap">pixel-perfect</span>{" "}
+                  accuracy in the atomic level{" "}
+                </p>
               </SweepWhiteOverlay>
-            </motion.p>
+            </motion.div>
             {/* </div> */}
             <div
               ref={mobileTargetRef}
@@ -308,9 +312,13 @@ export default function VerticalSlide() {
             >
               <div className="relative size-16 ">
                 <motion.div
-                
                   animate={{ rotate: "720deg" }}
-                  transition={{ repeat: Infinity, duration: 15, ease: "linear", repeatDelay: 0 }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 15,
+                    ease: "linear",
+                    repeatDelay: 0,
+                  }}
                 >
                   <Spinner style={{ display: "inline" }} className="inline" />
                 </motion.div>
@@ -326,19 +334,26 @@ export default function VerticalSlide() {
           </div>
         </div>
       </div>
-      <motion.div
-        style={{ marginTop: jumpStartSectionYValue }}
-        className="max-w-[1330px] mx-auto"
+      <RadialBlurCursorEffect
+        blurRadius={500}
+        hideOverflow={false}
+        // hitSlop={{ top: 1800, bottom: 0, left: 0, right: 0 }}
       >
-        <div className="grid mx-auto grid-cols-1 lg:grid-cols-2 px-4 lg:px-20 ">
-          <p className="text-3xl lg:text-6xl text-white  lg:col-start-2 font-semibold">
-            Jumpstart your business with beautifully crafted themes and sections
-          </p>
-        </div>
-        <div className="py-12 lg:pt-0 lg:pb-32">
-          <InfinityThumbnail />
-        </div>
-      </motion.div>
+        <motion.div
+          style={{ marginTop: jumpStartSectionYValue }}
+          className="max-w-[1330px] mx-auto "
+        >
+          <div className="grid mx-auto grid-cols-1 lg:grid-cols-2 px-4 lg:px-20">
+            <p className="text-3xl lg:text-6xl text-white  lg:col-start-2 font-semibold">
+              Jumpstart your business with beautifully crafted themes and
+              sections
+            </p>
+          </div>
+          <div className="py-12 lg:pt-0 lg:pb-32">
+            <InfinityThumbnail />
+          </div>
+        </motion.div>
+      </RadialBlurCursorEffect>
     </motion.div>
   );
 }

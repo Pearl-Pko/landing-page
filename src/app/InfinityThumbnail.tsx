@@ -127,7 +127,6 @@ export default function InfinityThumbnail() {
           </div>
         </div>
       </div>
-      <RadialBlurCursorEffect />
     </div>
   );
 }
