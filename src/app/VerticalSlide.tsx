@@ -220,13 +220,13 @@ export default function VerticalSlide() {
               style={{ opacity: opacityValue, top: topValue }}
               className="text-5xl lg:text-8xl break-keep flex flex-col justify-center font-semibold"
             >
-              <SweepWhiteOverlay delay={0.5}>
+              {/* <SweepWhiteOverlay delay={0.5}> */}
                 <p>
                   Create{" "}
                   <span className="whitespace-nowrap">pixel-perfect</span>{" "}
                   accuracy in the atomic level{" "}
                 </p>
-              </SweepWhiteOverlay>
+              {/* </SweepWhiteOverlay> */}
             </motion.div>
             {/* </div> */}
             <div
@@ -323,12 +323,12 @@ export default function VerticalSlide() {
                   <Spinner style={{ display: "inline" }} className="inline" />
                 </motion.div>
               </div>
-              <SweepWhiteOverlay delay={0.5}>
+              {/* <SweepWhiteOverlay delay={0.5}> */}
                 <p className="text-lg lg:text-2xl">
                   Create your website from the ground up with complete control
                   over every element, down to the smallest detail
                 </p>
-              </SweepWhiteOverlay>
+              {/* </SweepWhiteOverlay> */}
               <Button text="Get started with tutorials" variant="link" />
             </motion.div>
           </div>

@@ -8,6 +8,7 @@ import InfinityThumbnail from "./InfinityThumbnail";
 import { Button } from "@/components/ui/Button";
 import Accordion, { AccordionType } from "@/components/app/Accordion";
 import RadialBlurCursorEffect from "@/components/app/RadialBlurCursorEffect";
+import { motion } from "motion/react";
 import AppIntegration from "./AppIntegration";
 import OutlineEffect from "@/components/app/OutlineEffect";
 import Link from "next/link";
@@ -109,7 +110,13 @@ export default function page() {
               </div>
             </div>
           </div>
-          <div className="relative w-full h-[50vw] ">
+          <motion.div
+            initial={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="relative w-full h-[50vw] "
+          >
             <Image
               className="bg-primary rounded-md py-2 inline"
               fill
@@ -122,34 +129,34 @@ export default function page() {
               }
               alt="image"
             />
-          </div>
+          </motion.div>
         </div>
         <div className="py-16 lg:pt-32 lg:pb-0">
           <SweepWhiteOverlay delay={0.5}>
             <p className="text-5xl lg:text-8xl z-10 font-semibold  mb-[125px] lg:mb-0 ">
-              Design pixel-perfect sites beyond ordinary
+             Design pixel-perfect sites beyond ordinary
             </p>
           </SweepWhiteOverlay>
           <Accordion items={accordion1} />
         </div>
 
         <div className="py-16 lg:pt-32 lg:pb-0">
-          <SweepWhiteOverlay delay={0.5}>
+          {/* <SweepWhiteOverlay delay={0.5}> */}
             <p className="text-5xl lg:text-8xl font-semibold mb-[125px] lg:mb-0  ">
               Craft engaging and immersive interactions
             </p>
-          </SweepWhiteOverlay>
+          {/* </SweepWhiteOverlay> */}
           <Accordion items={accordion2} align="rtl" />
         </div>
       </div>
 
       <div className="bg-black px-4 pt-16 lg:pt-28">
         <div className="mx-auto">
-          <SweepWhiteOverlay delay={0.5}>
+          {/* <SweepWhiteOverlay delay={0.5}> */}
             <p className="max-w-[1330px] text-5xl  mx-auto lg:text-8xl mb-16 ">
               Scale your <span className="block">business with</span>
             </p>
-          </SweepWhiteOverlay>
+          {/* </SweepWhiteOverlay> */}
           <StickyCards />
         </div>
       </div>
@@ -239,11 +246,11 @@ export default function page() {
       <div className="bg-black relative mb-16">
         <RadialBlurCursorEffect>
           <div className="max-w-[1330px] px-4 mx-auto py-[128px] flex flex-col gap-16 lg:gap-32">
-            <SweepWhiteOverlay delay={0.5}>
+            {/* <SweepWhiteOverlay delay={0.5}> */}
               <p className="text-center text-3xl lg:text-6xl font-semibold">
                 Performance that <span className="block">sets you apart</span>
               </p>
-            </SweepWhiteOverlay>
+            {/* </SweepWhiteOverlay> */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div>
                 <div className="flex flex-col gap-6 p-6 lg:p-12">

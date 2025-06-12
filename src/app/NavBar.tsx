@@ -209,19 +209,22 @@ const NavLink = ({
       }}
       // whileHover={"focused"}
       // whileFocus={"focused"}
+      initial={"blur"}
       animate={menu === defaultMenu ? "focused" : "blur"}
       variants={{}}
       className="py-4 lg:py-0 z-50 h-full"
     >
       <motion.p
-
-        variants={{ focused: { color: "white" }, blur: {color: "var(--color-secondary)"} }}
+        variants={{
+          focused: { color: "white" },
+          blur: { color: "var(--color-secondary)" },
+        }}
         className=" cursor-pointer flex flex-row gap-2 h-full items-center"
       >
         {defaultMenu}
         <motion.span variants={{ focused: { rotate: "180deg" } }}>
           {/* <Image alt="" width={12} height={12} src="/arrow.svg" /> */}
-          <Arrow/>
+          <Arrow />
         </motion.span>
       </motion.p>
       <AnimatePresence>

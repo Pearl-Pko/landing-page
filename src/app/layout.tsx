@@ -34,7 +34,7 @@ export default function RootLayout({
                       user-scalable=no, target-densitydpi=device-dpi"
         ></meta>
       </head>
-      <body className={`bg-[#1C1E1F] font-inter `}>{children}</body>
+      <body className={`bg-[#1C1E1F] font-inter overflow-x-hidden`}>{children}</body>
     </html>
   );
 }
