@@ -42,7 +42,7 @@ export default function Accordion({
             {items["section"].map((item, index) => {
               return (
                 <motion.div
-                  initial={"inactive"}
+                  initial={false}
                   animate={selectedIndex === index ? "active" : "inactive"}
                   key={index}
                   className={cn("flex flex-row gap-10 items-stretch w-full")}
@@ -90,7 +90,7 @@ export default function Accordion({
                     >
                       {item.title}
                     </motion.p>
-                    <AnimatePresence>
+                    <AnimatePresence initial={false}>
                       {selectedIndex === index && (
                         <motion.div
                           initial={{ height: 0 }}

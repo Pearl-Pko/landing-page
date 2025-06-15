@@ -523,7 +523,7 @@ export default function page() {
         </div>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-5 max-w-[1330px] gap-y-12 gap-x-6 mx-auto mt-[100px] py-8 lg:mt-[134px] px-4">
-        <div className="col-span-2 row-start-3 lg:col-span-1 lg:row-start-auto flex lg:flex-col gap-6">
+        <div className="col-span-2 row-start-3 lg:col-span-1 lg:row-start-auto items-center lg:items-start flex lg:flex-col gap-6">
           <p className="text-white font-semibold ">Social</p>
           <div className="flex lg:flex-col gap-3">
             <Link
