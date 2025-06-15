@@ -89,9 +89,11 @@ export default function page() {
       {/* <div> */}
       <div className="max-w-[1330px] px-4 h-auto w-full mx-auto  ">
         <div className=" pt-[70px] pb-[60px]">
-          <p className="bg-[#212426] py-2.5 font-semibold text-white text-lg inline px-6 rounded-full">
-            No-Code WordPress Site Builder
-          </p>
+          <div className="bg-[#212426] py-2.5 px-6 inline-block rounded-full">
+            <p className=" font-semibold text-white text-lg  ">
+              No-Code WordPress Site Builder
+            </p>
+          </div>
           <div className="flex flex-col md:flex-row justify-between gap-12 mb-14 lg:mt-20 lg:mb-24 mt-6 items-center">
             <div className="max-w-[750px]">
               <h1 className="lg:text-8xl text-5xl font-semibold text-white">

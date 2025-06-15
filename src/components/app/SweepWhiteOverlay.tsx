@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, useInView, useMotionValue, useTransform } from "motion/react";
 import { clamp, cn, transformRange } from "@/utils/utils";
 import { ClassValue } from "clsx";
 import { useUnitDriver } from "@/hooks/useUnitDriver";
 import { easeIn, easeOut } from "motion";
+import useResizeObserver from "@react-hook/resize-observer";
 
 type Rect = { top: number; width: number; left: number; height: number };
 
@@ -54,7 +55,7 @@ export default function SweepWhiteOverlay({
       .join(", ");
   });
 
-  useEffect(() => {
+  const getLineRanges = () => {
     if (!ref.current) return;
 
     const currentLineRanges: Range[] = [];
@@ -105,7 +106,13 @@ export default function SweepWhiteOverlay({
     );
 
     console.log("dd", currentLineRanges);
+  };
+
+  useLayoutEffect(() => {
+    getLineRanges();
   }, [ref]);
+
+  useResizeObserver(ref, () => getLineRanges());
 
   return (
     <motion.div className="relative">

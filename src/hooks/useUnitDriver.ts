@@ -1,5 +1,5 @@
 import { useMotionValue } from "motion/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function useUnitDriver({
   start,
@@ -9,9 +9,10 @@ export function useUnitDriver({
   duration: number;
 }) {
   const progress = useMotionValue(0);
+  const [finish, setFinish] = useState(false);
 
   useEffect(() => {
-    if (!start) return;
+    if (!start || finish) return;
 
     const startTime = performance.now();
     let frameId: number = 0;
@@ -22,6 +23,8 @@ export function useUnitDriver({
       progress.set(newProgress);
       if (newProgress < 1) {
         frameId = requestAnimationFrame(update);
+      } else {
+        setFinish(true);
       }
     };
 
