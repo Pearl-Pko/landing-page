@@ -1,23 +1,58 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion } from "motion/react";
-import { cn } from "@/utils/utils";
+import { motion, useInView, useMotionValue, useTransform } from "motion/react";
+import { clamp, cn, transformRange } from "@/utils/utils";
 import { ClassValue } from "clsx";
+import { useUnitDriver } from "@/hooks/useUnitDriver";
+import { easeIn, easeOut } from "motion";
 
 type Rect = { top: number; width: number; left: number; height: number };
 
+const highlight = () => {
+  return <div></div>;
+};
+
 export default function SweepWhiteOverlay({
   children,
-  duration = 1.5,
+  duration = 1,
   className,
-  delay,
+  delay = 0.25,
 }: {
   duration?: number;
+  offsetDuration?: number;
   delay?: number;
   className?: ClassValue;
   children: React.ReactNode | React.ReactNode[];
 }) {
   const [lineRanges, setLineRanges] = useState<Rect[]>([]);
   const ref = useRef<HTMLDivElement | null>(null);
+  const inView = useInView(ref, {
+    once: true,
+  });
+  const [containerDimensions, setContainerDimensions] = useState<Rect>();
+  const totalDuration = duration + delay * lineRanges.length;
+  const { progress } = useUnitDriver({
+    duration: totalDuration,
+    start: inView,
+  });
+
+  const backgroundPositions = useTransform(progress, (v) => {
+    return lineRanges
+      .map((rect, index) => {
+        const offsetDuration = delay * index;
+
+        const offset = transformRange(
+          v,
+          [
+            offsetDuration / totalDuration,
+            (duration + offsetDuration) / totalDuration,
+          ],
+          [-rect.width, 0]
+        );
+
+        return `${offset}px ${rect.top}px, 0px ${rect.top}px`;
+      })
+      .join(", ");
+  });
 
   useEffect(() => {
     if (!ref.current) return;
@@ -56,6 +91,7 @@ export default function SweepWhiteOverlay({
 
     const parentBoundingBox = ref.current.getBoundingClientRect();
 
+    setContainerDimensions(parentBoundingBox);
     setLineRanges(
       currentLineRanges.map((lineRange) => {
         const boundingRect = lineRange.getBoundingClientRect();
@@ -67,56 +103,52 @@ export default function SweepWhiteOverlay({
         };
       })
     );
-    console.log("tease", ref.current?.textContent, currentLineRanges);
+
+    console.log("dd", currentLineRanges);
   }, [ref]);
 
-  console.log("dd", lineRanges);
-
   return (
-    <div ref={ref} className="relative">
-      {children}
-
-      {lineRanges.map((x, index) => {
+    <motion.div className="relative">
+      {/* 
+      // test view boxes
+      {lineRanges.map((x) => {
         return (
-          // <div
-          //   className="absolute border-2 border-amber-100 top-0 left-0"
-          //   style={{
-          //     top: x.top,
-
-          //     left: x.left,
-          //     width: x.width,
-          //     height: x.height,
-          //   }}
-          // ></div>
-          <motion.div
-            ref={ref}
-            transition={{ duration: duration, ease: "easeOut", delay: delay }}
+          <div
+            className="absolute border-2 border-amber-100 top-0 left-0"
             style={{
-              backgroundImage:
-                "linear-gradient(#ffffff, #ffffff),  linear-gradient(#9C958A, #9C958A)",
-              backgroundPosition: "0% 0%, 0%, 0%",
-              backgroundRepeat: "no-repeat",
-              
-              backgroundSize: "0% 100%, 100% 100%",
-              backgroundClip: "text",
               top: x.top,
+
               left: x.left,
               width: x.width,
               height: x.height,
             }}
-            initial={"inactive"}
-            whileInView={"active"}
-            viewport={{ once: true }}
-            variants={{
-              inactive: { backgroundSize: "0% 100%, 100% 100%" },
-              active: { backgroundSize: "100% 100%, 100% 100%" },
-            }}
-            className={cn(className, "text-transparent absolute top-0 left-0")}
-            //   className="text-secondary text-3xl relative -z-10"
-          >
-          </motion.div>
+          ></div>
         );
-      })}
-    </div>
+      })} */}
+
+      <motion.div
+        ref={ref}
+        style={{
+          backgroundImage: lineRanges
+            .map(
+              (rect, index) =>
+                `linear-gradient(#ffffff, #ffffff), linear-gradient(#9C958A, #9C958A)`
+            )
+            .join(", "),
+          backgroundPosition: backgroundPositions,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: lineRanges
+            .map(
+              (rect) =>
+                `${rect.width}px ${rect.height}px, ${rect.width}px ${rect.height}px`
+            )
+            .join(", "),
+          backgroundClip: "text",
+        }}
+        className={cn(className, "text-transparent")}
+      >
+        {children}
+      </motion.div>
+    </motion.div>
   );
 }

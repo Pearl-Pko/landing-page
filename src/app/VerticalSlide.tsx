@@ -16,6 +16,7 @@ import InfinityThumbnail from "./InfinityThumbnail";
 import SweepWhiteOverlay from "@/components/app/SweepWhiteOverlay";
 import Spinner from "@/assets/spinner.svg";
 import RadialBlurCursorEffect from "@/components/app/RadialBlurCursorEffect";
+import { clamp } from "@/utils/utils";
 const cards = [
   {
     image: "https://droip.com/wp-content/uploads/2025/03/vertical-slider2.webp",
@@ -36,10 +37,6 @@ const cards = [
     image: "https://droip.com/wp-content/uploads/2025/03/vertical-slider2.webp",
   },
 ];
-
-function clamp(value: number, min: number, max: number) {
-  return Math.min(Math.max(value, min), max);
-}
 
 export default function VerticalSlide() {
   const imagesRefs = useRef<(HTMLDivElement | null)[]>([
@@ -220,7 +217,7 @@ export default function VerticalSlide() {
               style={{ opacity: opacityValue, top: topValue }}
               className="text-5xl lg:text-8xl break-keep flex flex-col justify-center font-semibold"
             >
-              {/* <SweepWhiteOverlay delay={0.5}> */}
+              {/* <SweepWhiteOverlay> */}
                 <p>
                   Create{" "}
                   <span className="whitespace-nowrap">pixel-perfect</span>{" "}
@@ -323,12 +320,12 @@ export default function VerticalSlide() {
                   <Spinner style={{ display: "inline" }} className="inline" />
                 </motion.div>
               </div>
-              {/* <SweepWhiteOverlay delay={0.5}> */}
+              <SweepWhiteOverlay>
                 <p className="text-lg lg:text-2xl">
                   Create your website from the ground up with complete control
                   over every element, down to the smallest detail
                 </p>
-              {/* </SweepWhiteOverlay> */}
+              </SweepWhiteOverlay>
               <Button text="Get started with tutorials" variant="link" />
             </motion.div>
           </div>
