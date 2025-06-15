@@ -26,3 +26,7 @@ export function transformRange(
   // Interpolate in the output range
   return outMin + clampedT * (outMax - outMin);
 }
+
+export function floatGreaterThan(a: number, b: number, epsilon = 1e-6) {
+  return a - b > epsilon;
+}

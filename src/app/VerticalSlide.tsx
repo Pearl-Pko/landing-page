@@ -13,7 +13,7 @@ import next from "next";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import InfinityThumbnail from "./InfinityThumbnail";
-import SweepWhiteOverlay from "@/components/app/SweepWhiteOverlay";
+import SweepTextOverlay from "@/components/app/SweepTextOverlay";
 import Spinner from "@/assets/spinner.svg";
 import RadialBlurCursorEffect from "@/components/app/RadialBlurCursorEffect";
 import { clamp } from "@/utils/utils";
@@ -217,13 +217,13 @@ export default function VerticalSlide() {
               style={{ opacity: opacityValue, top: topValue }}
               className="text-5xl lg:text-8xl break-keep flex flex-col justify-center font-semibold"
             >
-              {/* <SweepWhiteOverlay> */}
+              <SweepTextOverlay>
                 <p>
                   Create{" "}
                   <span className="whitespace-nowrap">pixel-perfect</span>{" "}
                   accuracy in the atomic level{" "}
                 </p>
-              {/* </SweepWhiteOverlay> */}
+              </SweepTextOverlay>
             </motion.div>
             {/* </div> */}
             <div
@@ -320,12 +320,12 @@ export default function VerticalSlide() {
                   <Spinner style={{ display: "inline" }} className="inline" />
                 </motion.div>
               </div>
-              <SweepWhiteOverlay>
+              <SweepTextOverlay>
                 <p className="text-lg lg:text-2xl">
                   Create your website from the ground up with complete control
                   over every element, down to the smallest detail
                 </p>
-              </SweepWhiteOverlay>
+              </SweepTextOverlay>
               <Button text="Get started with tutorials" variant="link" />
             </motion.div>
           </div>
