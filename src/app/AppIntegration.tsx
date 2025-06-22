@@ -4,8 +4,8 @@ import Image from "next/image";
 import OutlineEffect from "@/components/app/OutlineEffect";
 
 export default function AppIntegration() {
-  const [containerHovered, setContainerHovered] = useState(false);
-  const [hoveredAppIconIndex, setHoveredAppIconIndex] = useState(-1);
+  const [containerFocused, setContainerFocused] = useState(false);
+  const [focusedAppIconIndex, setFocusedAppIconIndex] = useState(-1);
 
   return (
     <div className="max-w-[1330px] mx-auto py-16 lg:py-32 px-4">
@@ -22,8 +22,8 @@ export default function AppIntegration() {
         </p>
       </div>
       <motion.div
-        onMouseEnter={() => setContainerHovered(true)}
-        onMouseLeave={() => setContainerHovered(false)}
+        onMouseEnter={() => setContainerFocused(true)}
+        onMouseLeave={() => setContainerFocused(false)}
         className="grid grid-cols-4 lg:grid-cols-6 gap-1 relative"
       >
         {Array.from({ length: 24 }).map((_, index) => {
@@ -42,18 +42,22 @@ export default function AppIntegration() {
               key={index}
               onHoverStart={() => {
                 console.log("hover", index);
-                setHoveredAppIconIndex(index);
+                setFocusedAppIconIndex(index);
               }}
-              onHoverEnd={() => {
-                setHoveredAppIconIndex(-1);
+              onClick={() => {
+                console.log("hover", index);
+                setFocusedAppIconIndex(index);
               }}
-              custom={hoveredAppIconIndex}
+              onBlur={() => {
+                setFocusedAppIconIndex(-1);
+              }}
+              custom={focusedAppIconIndex}
               animate={
-                hoveredAppIconIndex === index
+                !containerFocused
+                  ? "idle"
+                  : focusedAppIconIndex === index
                   ? "active"
-                  : containerHovered
-                  ? "inactive"
-                  : "idle"
+                  : "inactive"
               }
               variants={{
                 active: {
