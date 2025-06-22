@@ -8,10 +8,11 @@ import {
   useSpring,
   useMotionValue,
   easeOut,
+  useInView,
 } from "motion/react";
 import next from "next";
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import InfinityThumbnail from "./InfinityThumbnail";
 import SweepTextOverlay from "@/components/app/SweepTextOverlay";
 import Spinner from "@/assets/spinner.svg";
@@ -58,6 +59,11 @@ export default function VerticalSlide() {
   const mobileTargetRef = useRef<HTMLDivElement | null>(null);
 
   const currentRef = useRef<HTMLDivElement | null>(null);
+  const rootRef = useRef<HTMLDivElement | null>(null);
+
+  const sliderRefInView = useInView(rootRef, {
+    once: true,
+  });
 
   const [currentLayout, setCurrentLayout] = useState<
     "mobile" | "desktop" | null
@@ -66,6 +72,7 @@ export default function VerticalSlide() {
   const { scrollYProgress } = useScroll({
     target: currentRef,
     offset: ["start start", "end end"],
+    layoutEffect: false,
   });
 
   const index = useTransform(
@@ -115,7 +122,6 @@ export default function VerticalSlide() {
       2,
       5
     );
-    console.log("currentIndex", currentIndex, nextIndex);
     let frac = index.get() - Math.floor(index.get());
     frac = direction === 1 ? frac : 1 - frac;
 
@@ -152,10 +158,12 @@ export default function VerticalSlide() {
   });
 
   useEffect(() => {
-    handleAlign(-1);
-  }, []);
+    if (sliderRefInView) {
+      handleAlign(-1);
+    }
+  }, [sliderRefInView]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1024px)");
 
     const respondToScreenChange = (
@@ -177,35 +185,12 @@ export default function VerticalSlide() {
       mediaQuery.removeEventListener("change", respondToScreenChange);
   }, [desktopTargetRef.current, mobileTargetRef.current]);
 
-  // useEffect(() => {
-  //   // const alignTop = () => {
-  //   // align top
-  //   const imageOutlineBox = imageOutlineRef.current?.getBoundingClientRect();
-  //   const currentImageRect =
-  //     imagesRefs.current[Math.floor(index.get())]?.getBoundingClientRect();
-
-  //   if (imageOutlineBox && currentImageRect) {
-  //     console.log(
-  //       "tilt",
-  //       currentImageRect.top,
-  //       imageOutlineBox.top,
-  //       currentImageRect.top - imageOutlineBox.top
-  //     );
-  //     // imageOutlineTop.set(currentImageRect.top - imageOutlineBox.top);
-  //     imageOutlineTop.set(currentImageRect.top - imageOutlineBox.top);
-  //   }
-  //   // };
-
-  //   // const alignHeight = () => {
-  //   // align height
-  //   if (currentImageRect) {
-  //     imageOutlineHeight.set(currentImageRect.height);
-  //   }
-  //   // }
-  // }, []);
-
   return (
-    <motion.div className="h-auto" style={{ background: backgroundValue }}>
+    <motion.div
+      ref={rootRef}
+      className="h-auto"
+      style={{ background: backgroundValue }}
+    >
       <div
         ref={desktopTargetRef}
         className="mx-auto  max-w-[1330px] lg:h-[200vh] px-4"
@@ -258,6 +243,7 @@ export default function VerticalSlide() {
                           className="mx-auto my-auto h-auto"
                           style={{ width: width }}
                           key={ind}
+                          //  willChange= 'transform, opacity'
                         >
                           <Image
                             alt=""

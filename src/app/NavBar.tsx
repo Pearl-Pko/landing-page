@@ -266,7 +266,6 @@ export default function NavBar() {
     if (!scrollYProgress.getPrevious()) return;
 
     const direction = latest - scrollYProgress.getPrevious()! >= 0 ? 1 : -1;
-    console.log("direction", dimensions);
     setScrollDirection(direction);
   });
 

@@ -171,12 +171,12 @@ export default function page() {
           <span className="block">dependencies</span>
         </p>
 
-        <div className="grid auto-rows-min lg:grid-rows-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 relative overflow-hidden">
-          <div className="absolute inset-0 flex items-center justify-center">
+        <div className="grid auto-rows-min lg:grid-rows-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 relative">
+          <div className="-z-10 absolute inset-0 flex items-center justify-center">
             <div
               style={{
                 background:
-                  "radial-gradient(circle,rgba(27, 10, 154, 0.15) 0%, rgba(27, 10, 154, 0) 100%)",
+                  "radial-gradient(circle,rgba(27, 10, 154, 0.3) 0%, rgba(27, 10, 154, 0) 100%)",
               }}
               className="blur-2xl  w-[800px] h-[800px] rounded-full"
             ></div>
@@ -321,9 +321,9 @@ export default function page() {
             <div
               style={{
                 background:
-                  "radial-gradient(circle,rgba(27, 10, 154, 0.15) 0%, rgba(27, 10, 154, 0) 100%)",
+                  "radial-gradient(circle,rgba(27, 10, 154, 0.3) 0%, rgba(27, 10, 154, 0) 100%)",
               }}
-              className="blur-2xl  w-[800px] h-full rounded-full"
+              className="blur-2xl  w-full h-full rounded-full"
             ></div>
           </div>
           <div className="bg-[#17191a] p-8 rounded-2xl md:col-span-2 lg:col-span-4 flex flex-col md:flex-row lg:justify-between">
