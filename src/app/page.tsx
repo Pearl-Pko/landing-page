@@ -83,6 +83,7 @@ const accordion2: AccordionType = {
 };
 
 export default function page() {
+  
   return (
     <div className="pb-5 w-full ">
       <NavBar />

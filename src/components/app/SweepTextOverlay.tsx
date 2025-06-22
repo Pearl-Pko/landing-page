@@ -1,10 +1,11 @@
+"use client";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, useInView, useMotionValue, useTransform } from "motion/react";
 import { clamp, cn, floatGreaterThan, transformRange } from "@/utils/utils";
 import { ClassValue } from "clsx";
 import { useUnitDriver } from "@/hooks/useUnitDriver";
 import { easeIn, easeOut } from "motion";
-import useResizeObserver from "@react-hook/resize-observer";
+import { useResizeObserver } from "@/hooks/useResizeObserver";
 
 type Rect = { top: number; width: number; left: number; height: number };
 
