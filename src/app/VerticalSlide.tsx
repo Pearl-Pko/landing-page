@@ -219,9 +219,8 @@ export default function VerticalSlide() {
             >
               <SweepTextOverlay>
                 <p>
-                  Create{" "}
-                  <span className="whitespace-nowrap">pixel-perfect</span>{" "}
-                  accuracy in the atomic level{" "}
+                  Create <span className="">pixel-perfect</span> accuracy in the
+                  atomic level
                 </p>
               </SweepTextOverlay>
             </motion.div>

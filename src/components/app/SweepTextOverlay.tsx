@@ -62,7 +62,7 @@ export default function SweepTextOverlay({
 
     while (walker.nextNode()) {
       const currentNode = walker.currentNode as Text;
-      if (currentNode.textContent?.trim()) {
+      if (currentNode.textContent) {
         textNodes.push(currentNode);
       }
     }
@@ -71,35 +71,33 @@ export default function SweepTextOverlay({
 
     const parentBoundingBox = ref.current.getBoundingClientRect();
 
-    const addOrMergeLineRanges = (merge: boolean, newRect: Rect) => {
-      if (merge && currentLineRanges.length > 0) {
-        console.log("merge logic");
-        const prevLineRange = currentLineRanges[currentLineRanges.length - 1];
-
-        currentLineRanges[currentLineRanges.length - 1] = {
-          top: prevLineRange.top,
-          left: prevLineRange.left,
-          width: prevLineRange.width + newRect.width,
-          height: prevLineRange.height,
+    const mergeRects = (oldRect: Rect | null, newRect: Rect) => {
+      if (oldRect) {
+        return {
+          top: oldRect.top,
+          left: oldRect.left,
+          width: oldRect.width + newRect.width,
+          height: oldRect.height,
         };
       } else {
-        console.log("push logic");
-        currentLineRanges.push({
+        return {
           top: newRect.top - parentBoundingBox.top,
           left: newRect.left - parentBoundingBox.left,
           width: newRect.width,
           height: newRect.height,
-        });
+        };
       }
     };
 
     let prevBottom: number | null = null;
+    let mergeRect: Rect | null = null;
+
     for (let i = 0; i < textNodes.length; i++) {
       const node = textNodes[i];
       let lastLineIndex = 0;
 
       let currentRange: Range = document.createRange();
-      const nodeText = node.textContent?.trim() || "";
+      const nodeText = node.textContent || "";
 
       for (let j = 1; j <= nodeText.length; j++) {
         currentRange.setStart(node, lastLineIndex);
@@ -109,28 +107,27 @@ export default function SweepTextOverlay({
 
         if (i == 0 && j === 1) prevBottom = boundingRect.bottom;
 
-        console.log("prev bottom", prevBottom);
-
         // line breaks occur in the same element
         if (prevBottom && floatGreaterThan(boundingRect.bottom, prevBottom)) {
-          console.log("shouldn't merge", nodeText[j - 1] + nodeText[j]);
           currentRange.setEnd(node, j - 1);
 
           const preLineBreakBoundingRect = currentRange.getBoundingClientRect();
-          addOrMergeLineRanges(false, preLineBreakBoundingRect);
 
+          mergeRect = mergeRects(mergeRect, preLineBreakBoundingRect);
           lastLineIndex = j - 1;
           prevBottom = boundingRect.bottom;
 
           currentRange = document.createRange();
+          currentLineRanges.push(mergeRect);
+          mergeRect = null;
         } else if (j === nodeText.length) {
-          // console.log("should merge");
-         
-          if (i === textNodes.length - 1)
-            addOrMergeLineRanges(false, boundingRect);
-          else addOrMergeLineRanges(true, boundingRect);  // line break yet to occur at end of the element text, merge it with previous
+          mergeRect = mergeRects(mergeRect, boundingRect);
         }
       }
+    }
+
+    if (mergeRect) {
+      currentLineRanges.push(mergeRect);
     }
 
     setLineRanges(currentLineRanges);
