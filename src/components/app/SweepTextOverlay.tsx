@@ -23,6 +23,8 @@ export default function SweepTextOverlay({
 }) {
   const [lineRanges, setLineRanges] = useState<Rect[]>([]);
   const ref = useRef<HTMLDivElement | null>(null);
+  const [parentRect, setParentRect] = useState<DOMRect | null>(null);
+
   const inView = useInView(ref, {
     once: true,
   });
@@ -44,13 +46,14 @@ export default function SweepTextOverlay({
             offsetDuration / totalDuration,
             (duration + offsetDuration) / totalDuration,
           ],
-          [-rect.width + rect.left, rect.left]
+          [-(parentRect?.width || 0) + rect.left, rect.left]
         );
 
-        return `${offset}px ${rect.top}px, ${rect.left}px ${rect.top}px`;
+        return `${offset}px ${rect.top}px`;
       })
       .join(", ");
   });
+
 
   const getLineRanges = () => {
     if (!ref.current) return;
@@ -71,6 +74,8 @@ export default function SweepTextOverlay({
     console.log("timing", textNodes);
 
     const parentBoundingBox = ref.current.getBoundingClientRect();
+
+    setParentRect(parentBoundingBox);
 
     const mergeRects = (oldRect: Rect | null, newRect: Rect) => {
       if (oldRect) {
@@ -162,10 +167,11 @@ export default function SweepTextOverlay({
       <motion.div
         ref={ref}
         style={{
+          // willChange: "background-position, background-size",
           backgroundImage: lineRanges
             .map(
               (rect, index) =>
-                `linear-gradient(#ffffff, #ffffff), linear-gradient(#9C958A, #9C958A)`
+                `linear-gradient(#ffffff, #ffffff)`
             )
             .join(", "),
           backgroundPosition: backgroundPositions,
@@ -173,12 +179,13 @@ export default function SweepTextOverlay({
           backgroundSize: lineRanges
             .map(
               (rect) =>
-                `${rect.width}px ${rect.height}px, ${rect.width}px ${rect.height}px`
+                `${parentRect?.width || 0}px ${rect.height}px`
             )
             .join(", "),
           backgroundClip: "text",
+          color: "hsl(0 0% 100% / 0.2)",
         }}
-        className={cn(className, "text-transparent")}
+        className={cn(className)}
       >
         {children}
       </motion.div>

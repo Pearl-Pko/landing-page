@@ -105,7 +105,8 @@ export default function Accordion({
                               <Button variant="link" text="View Details" />
                             )}
                           </div>
-                          <Image
+                          <img
+                          
                             style={{
                               objectFit: "cover",
                             }}
